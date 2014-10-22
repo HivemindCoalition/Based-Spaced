@@ -8,6 +8,8 @@
   <sprites name="sprites">
     <sprite>sprites\sprite0</sprite>
     <sprite>sprites\sprite1</sprite>
+    <sprite>sprites\Tile_Green</sprite>
+    <sprite>sprites\Tile_Grey</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>

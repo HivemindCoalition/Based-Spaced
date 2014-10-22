@@ -25,12 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>turn_count = 0;
+            <string>
+//Game Control Variables
+turn_count = 0;
 player_count = 2;
 player_turn = turn_count % player_count;
 global.selected_unit = 0;
 
-board[0,0] = 0;
+//board control variables
+sizeX = 20;
+sizeY = 15;
+scaleXY = 25;
+activeBoard = false;
+
+//map creation
+indexX = 0;
+indexY = 0;
+board[indexX,indexY] = instance_create(indexX,indexY,Spaces);
 </string>
           </argument>
         </arguments>
@@ -53,7 +64,30 @@ board[0,0] = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>//board control variables
+sizeX = 20;
+sizeY = 15;
+scaleXY = 25;
+
+//map creation
+indexX = 0;
+indexY = 0;
+
+if(activeBoard == false)
+{
+    while(indexX &lt; sizeX)
+    {
+        while(indexY &lt; sizeY)
+        {
+            board[indexX,indexY] = instance_create(indexX*scaleXY,indexY*scaleXY,Spaces);
+            indexY++;
+        }
+        indexY = 0;
+        indexX++;
+    }
+    activeBoard = true;
+}
+</string>
           </argument>
         </arguments>
       </action>

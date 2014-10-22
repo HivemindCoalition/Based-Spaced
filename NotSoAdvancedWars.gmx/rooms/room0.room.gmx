@@ -3,8 +3,8 @@
   <caption></caption>
   <width>800</width>
   <height>600</height>
-  <vsnap>32</vsnap>
-  <hsnap>32</hsnap>
+  <vsnap>25</vsnap>
+  <hsnap>25</hsnap>
   <isometric>0</isometric>
   <speed>30</speed>
   <persistent>0</persistent>
@@ -51,9 +51,8 @@
     <view visible="0" objName="&lt;undefined&gt;" xview="0" yview="0" wview="1024" hview="768" xport="0" yport="0" wport="1024" hport="768" hborder="32" vborder="32" hspeed="-1" vspeed="-1"/>
   </views>
   <instances>
-    <instance objName="Units" x="320" y="160" name="inst_B5EA85F9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="GameController" x="96" y="160" name="inst_485B605F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="MouseCursor" x="96" y="288" name="inst_F224DD22" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="GameController" x="96" y="160" name="inst_485B605F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
