@@ -39,6 +39,66 @@ is_selected = 0;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Unit Types State Machine
+/*
+range - Indicates movement range of the craft
+health_total - The total hit points a squad can have
+health_current - How many hit points a squad currently has
+dmg_type - indicates the weapon type, which indicates effectiveness against armor
+arm_type - indicates the armor type, which indicates effectiveness against weapons
+ability - indicates if a ship has an ability, and what the ability is
+
+unit_type - indicates the unit type, which decides the aformentioned parameters
+*/
+
+ability = 0;
+unit_type = 0;
+
+is_selected = 0;
+
+
+/*Unit_Types
+0 - Capital Ship
+Heavy Armor
+Player can only have 1 Capital Ship
+Capital Ship Can Create Units
+Capital Ship Cannot attack, but can defend
+If Capital Ship is destroyed, that player loses
+1 - Corsair
+Light Armor
+Light Weapons
+Short Range
+2 - Fighter
+Lightly Armor
+Medium Weapons
+Medium Range
+3 - Bomber Frigate
+Medium Armor
+Heavy Weapons
+Medium Range
+*/
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
   </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>

@@ -41,7 +41,6 @@ activeBoard = false;
 //map creation
 indexX = 0;
 indexY = 0;
-board[indexX,indexY] = instance_create(indexX,indexY,Spaces);
 </string>
           </argument>
         </arguments>
@@ -72,6 +71,9 @@ scaleXY = 25;
 //map creation
 indexX = 0;
 indexY = 0;
+
+//setting position of planets
+
 
 if(activeBoard == false)
 {

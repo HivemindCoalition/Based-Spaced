@@ -8,10 +8,14 @@
   <sprites name="sprites">
     <sprite>sprites\sprite0</sprite>
     <sprite>sprites\sprite1</sprite>
-    <sprite>sprites\Tile_Green</sprite>
+    <sprite>sprites\Tile_Hovered</sprite>
     <sprite>sprites\Tile_Grey</sprite>
+    <sprite>sprites\Tile_Planet_Green</sprite>
+    <sprite>sprites\Tile_Empty</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\Background_Space</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\GameController</object>
@@ -22,6 +26,10 @@
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
+  <constants number="2">
+    <constant name="GM_build_date">41935.9269604051</constant>
+    <constant name="GM_version">'1.0.0.0'</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>

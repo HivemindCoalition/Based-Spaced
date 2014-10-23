@@ -25,11 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x_pos = 0;
-y_pos = 0;
-terrain = 0;
+            <string>terrain = 0;
 occupied_by = 0;
 controlled_by = 0;
+is_hovered = false;
 </string>
           </argument>
         </arguments>
@@ -55,8 +54,31 @@ controlled_by = 0;
             <string>switch(terrain)
 {
     case 0: //open space
-        sprite_index = Tile_Green;
+    sprite_index = Tile_Empty;
     break;
+    case 1: //Planet
+    sprite_index = Tile_Planet_Green;
+    break;
+}
+
+//if mouse is hovering over a space
+if(position_meeting(mouse_x,mouse_y,self)==true)
+{
+    is_hovered = true;
+}
+else
+{
+     is_hovered = false;
+}
+
+
+if(is_hovered = true)
+{
+    sprite_index = Tile_Hovered;
+}
+else
+{
+    sprite_index = Tile_Empty;
 }
 </string>
           </argument>
