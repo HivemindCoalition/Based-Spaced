@@ -81,13 +81,14 @@ total_spaces = 0;
         {
             board[indexX,indexY] = instance_create(indexX*global.scaleXY,indexY*global.scaleXY,Spaces);
             board[indexX,indexY].indexX = indexX;
-            board[indexX,indexY].indexX = indexY;
+            board[indexX,indexY].indexY = indexY;
             total_spaces++;
             indexY++;
         }
         indexY = 0;
         indexX++;
     }
+    indexX = 0;
     activeBoard = true;
 }
 else{}
