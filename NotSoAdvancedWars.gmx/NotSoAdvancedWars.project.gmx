@@ -9,6 +9,7 @@
     <sprite>sprites\sprite0</sprite>
     <sprite>sprites\sprite1</sprite>
     <sprite>sprites\Tile_Hovered</sprite>
+    <sprite>sprites\Tile_Selected</sprite>
     <sprite>sprites\Tile_Grey</sprite>
     <sprite>sprites\Tile_Planet_Green</sprite>
     <sprite>sprites\Tile_Empty</sprite>
@@ -27,7 +28,7 @@
     <room>rooms\room0</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41935.9269604051</constant>
+    <constant name="GM_build_date">41939.3881863426</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>

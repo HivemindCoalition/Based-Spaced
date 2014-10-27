@@ -27,17 +27,6 @@
             <kind>1</kind>
             <string>x = mouse_x;
 y = mouse_y;
-
-//if hovering over a unit
-if(position_meeting(x,y,Units))
-{
-    global.hovered_unit = instance_place(x, y, Units);
-}
-//selecting a unit
-if(mouse_check_button_pressed(mb_left) &amp;&amp; position_meeting(x,y,Units))
-{
-    global.selected_unit = instance_place(x, y, Units);
-}
 </string>
           </argument>
         </arguments>
