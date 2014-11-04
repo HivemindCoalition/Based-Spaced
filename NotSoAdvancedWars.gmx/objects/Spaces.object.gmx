@@ -47,12 +47,16 @@ if(tile_type == 0) //initializing terrain tiles
         case 0: //open space
         {
             sprite_index = Tile_Empty;
+            image_xscale = global.scaleXY/25;
+            image_yscale = global.scaleXY/25;
             tile_initialized = true;
         };
         break;
         case 1: //Planet
         {
             sprite_index = Tile_Planet_Green;
+            image_xscale = global.scaleXY/25;
+            image_yscale = global.scaleXY/25;
             tile_initialized = true;
         };
         break;
@@ -124,19 +128,12 @@ if(tile_type = 0)
 }
 if(is_hovered == true &amp;&amp; hovered_index == 0)
 {
-<<<<<<< HEAD
     GameController.indexX = indexX;
     GameController.indexY = indexY;
-=======
-<<<<<<< HEAD
-    GameController.hovered_space = self;//GameController.board[indexX, indexY];
-=======
->>>>>>> origin/master
     with(GameController)
     {
         GameController.hovered_space = GameController.board[indexX, indexY];
     }
->>>>>>> origin/master
     hovered_index = instance_create(x,y,Spaces);
     hovered_index.depth = -500; 
     hovered_index.sprite_index = Tile_Selected;

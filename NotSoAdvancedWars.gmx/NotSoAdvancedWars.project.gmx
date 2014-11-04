@@ -13,13 +13,16 @@
     <sprite>sprites\Tile_Grey</sprite>
     <sprite>sprites\Tile_Planet_Green</sprite>
     <sprite>sprites\Tile_Empty</sprite>
+    <sprite>sprites\Overlay_Basic</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\Background_Space</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
+    <object>objects\DeletionDummy</object>
     <object>objects\GameController</object>
+    <object>objects\UIController</object>
     <object>objects\Spaces</object>
     <object>objects\Units</object>
     <object>objects\MouseCursor</object>
