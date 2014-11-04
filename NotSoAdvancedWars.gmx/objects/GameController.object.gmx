@@ -95,7 +95,33 @@ indexX = 0;
         <arguments>
           <argument>
             <kind>1</kind>
+<<<<<<< HEAD
             <string>global.controller = self.instance_id;
+=======
+            <string>if(activeBoard == false)
+{
+    while(indexX &lt; sizeX)
+    {
+        while(indexY &lt; sizeY)
+        {
+            board[indexX,indexY] = instance_create(indexX*global.scaleXY,indexY*global.scaleXY,Spaces);
+            board[indexX,indexY].indexX = indexX;
+<<<<<<< HEAD
+            board[indexX,indexY].indexX = indexY;
+=======
+            board[indexX,indexY].indexY = indexY;
+>>>>>>> origin/master
+            total_spaces++;
+            indexY++;
+        }
+        indexY = 0;
+        indexX++;
+    }
+    indexX = 0;
+    activeBoard = true;
+}
+else{}
+>>>>>>> origin/master
 </string>
           </argument>
         </arguments>
