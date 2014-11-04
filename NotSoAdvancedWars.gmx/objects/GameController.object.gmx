@@ -30,17 +30,27 @@
 turn_count = 0;
 player_count = 2;
 player_turn = turn_count % player_count;
-global.selected_unit = 0;
 
 //board control variables
 sizeX = 20;
 sizeY = 15;
-scaleXY = 25;
+global.scaleXY = 25;
 activeBoard = false;
 
-//map creation
+//board init
+board[0,0] = 0;
+
+//map creation indexes
 indexX = 0;
 indexY = 0;
+
+//board selection stuff
+hovered_space = 0;
+selected_space = 0;
+hovered_index = 0;
+selected_index = 0;
+
+total_spaces = 0;
 </string>
           </argument>
         </arguments>
@@ -63,25 +73,16 @@ indexY = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//board control variables
-sizeX = 20;
-sizeY = 15;
-scaleXY = 25;
-
-//map creation
-indexX = 0;
-indexY = 0;
-
-//setting position of planets
-
-
-if(activeBoard == false)
+            <string>if(activeBoard == false)
 {
     while(indexX &lt; sizeX)
     {
         while(indexY &lt; sizeY)
         {
-            board[indexX,indexY] = instance_create(indexX*scaleXY,indexY*scaleXY,Spaces);
+            board[indexX,indexY] = instance_create(indexX*global.scaleXY,indexY*global.scaleXY,Spaces);
+            board[indexX,indexY].indexX = indexX;
+            board[indexX,indexY].indexX = indexY;
+            total_spaces++;
             indexY++;
         }
         indexY = 0;
@@ -89,6 +90,7 @@ if(activeBoard == false)
     }
     activeBoard = true;
 }
+else{}
 </string>
           </argument>
         </arguments>
@@ -106,5 +108,8 @@ if(activeBoard == false)
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>0,0</point>
+    <point>12,12</point>
+  </PhysicsShapePoints>
 </object>
