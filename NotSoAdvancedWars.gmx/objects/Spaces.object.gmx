@@ -37,6 +37,27 @@ is_selected = false; //if a space is selected
 is_hovered = false; //mouse hover
 hovered_index = 0;
 selected_index = 0;
+overlay = 0;
+
+//tile initialization
+if(tile_type == 0) //initializing terrain tiles
+{
+    switch(terrain)
+    {
+        case 0: //open space
+        {
+            sprite_index = Tile_Empty;
+            tile_initialized = true;
+        };
+        break;
+        case 1: //Planet
+        {
+            sprite_index = Tile_Planet_Green;
+            tile_initialized = true;
+        };
+        break;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -59,25 +80,7 @@ selected_index = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(tile_type == 0 &amp;&amp; tile_initialized == false) //initializing terrain tiles
-{
-    switch(terrain)
-    {
-        case 0: //open space
-        {
-            sprite_index = Tile_Empty;
-            tile_initialized = true;
-        };
-        break;
-        case 1: //Planet
-        {
-            sprite_index = Tile_Planet_Green;
-            tile_initialized = true;
-        };
-        break;
-    }
-}
-//check for mouse hovering and for selected tile
+            <string>//check for mouse hovering and for selected tile
 if(tile_type = 0)
 {
     if(position_meeting(mouse_x,mouse_y,self)==true)
@@ -86,28 +89,34 @@ if(tile_type = 0)
     }
     else
     {
-         is_hovered = false;
+        is_hovered = false;
     }
     
     //fix this if else    
-    /*if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == false)
+    if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == false)
     {
-        GameController.selected_space = self//GameController.board[indexX, indexY];
+        GameController.indexX = indexX;
+        GameController.indexY = indexY;
+        with(GameController)
+        {
+            GameController.selected_space = GameController.board[indexX, indexY];
+        }
         selected_index = instance_create(x,y,Spaces);
         selected_index.depth = -500; 
         selected_index.sprite_index = Tile_Selected;
         selected_index.tile_type = 1;
         is_selected = true;
-    }*/
-    /*else if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == true)
+    }
+    else if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == true)
     {
         with(selected_index)
         {
             instance_destroy();
         }
+        is_selected = false;
         selected_index = 0;
         GameController.selected_space = 0;
-    }*/
+    }
     //else if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; GameController.selected_space)
    // {
     //    is_selected = false;
@@ -115,6 +124,8 @@ if(tile_type = 0)
 }
 if(is_hovered == true &amp;&amp; hovered_index == 0)
 {
+    GameController.indexX = indexX;
+    GameController.indexY = indexY;
     with(GameController)
     {
         GameController.hovered_space = GameController.board[indexX, indexY];

@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = mouse_x;
-y = mouse_y;
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
