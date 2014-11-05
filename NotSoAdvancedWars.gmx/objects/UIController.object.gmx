@@ -28,9 +28,21 @@
             <string>//600 is starting x value of ui box
 draw_set_alpha(255);
 draw_sprite(Overlay_Basic,0,600,0);
-draw_text(625,20,"Terrain: " + string(GameController.selected_space));
-draw_text(625,30,"X-Coord: ");
-draw_text(625,40,"Y-Coord: ");
+
+draw_text(625,20,"Terrain ID: " + string(GameController.selected_space));
+
+if(instance_exists(GameController.selected_space))
+{
+    draw_text(625,40,"Terrain: " + string(GameController.selected_space.tile_type));
+    draw_text(625,60,"X-Coord: " + string(GameController.selected_space.indexX));
+    draw_text(625,80,"Y-Coord: " + string(GameController.selected_space.indexY));
+}
+else
+{
+    draw_text(625,40,"Terrain: ");
+    draw_text(625,60,"X-Coord: ");
+    draw_text(625,80,"Y-Coord: ");
+}
 </string>
           </argument>
         </arguments>

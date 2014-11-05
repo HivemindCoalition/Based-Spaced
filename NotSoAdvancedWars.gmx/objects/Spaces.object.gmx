@@ -99,6 +99,7 @@ if(tile_type = 0)
     //fix this if else    
     if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == false)
     {
+        //if(GameController.selected_space = 0)
         GameController.indexX = indexX;
         GameController.indexY = indexY;
         with(GameController)
@@ -117,9 +118,9 @@ if(tile_type = 0)
         {
             instance_destroy();
         }
-        is_selected = false;
         selected_index = 0;
         GameController.selected_space = 0;
+        is_selected = false;
     }
     //else if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; GameController.selected_space)
    // {
