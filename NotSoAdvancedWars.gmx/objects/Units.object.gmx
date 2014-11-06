@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>range = 0;
-health_total = 0;
-health_current = 0;
+            <string>range = 0; //movement range
 dmg_type = 0;
 arm_type = 0;
 ability = 0;
@@ -58,11 +56,15 @@ is_selected = 0;
             <kind>1</kind>
             <string>///Unit Types State Machine
 /*
-range - Indicates movement range of the craft
-health_total - The total hit points a squad can have
-health_current - How many hit points a squad currently has
+movement - Indicates movement range of the craft
 dmg_type - indicates the weapon type, which indicates effectiveness against armor
+- 0 - heavy
+- 1 - medium
+- 2 - light
 arm_type - indicates the armor type, which indicates effectiveness against weapons
+- 0 - heavy
+- 1 - medium
+- 2 - light
 ability - indicates if a ship has an ability, and what the ability is
 
 unit_type - indicates the unit type, which decides the aformentioned parameters
@@ -94,6 +96,40 @@ Medium Armor
 Heavy Weapons
 Medium Range
 */
+
+//tile initialization
+
+switch(unit_type)
+{
+    case 0: //Capital
+    {
+        movement = 1;
+        dmg_type = 0;
+        arm_type = 0;
+    };
+    break;
+    case 1: //Bomber
+    {
+        movement = 2;
+        dmg_type = 0;
+        arm_type = 1;
+    };
+    break;
+    case 2: //Fighter
+    {
+        movement = 3;
+        dmg_type = 1;
+        arm_type = 2;
+    };
+    break;
+    case 3: //Interceptor
+    {
+        movement = 4;
+        dmg_type = 2;
+        arm_type = 2;
+    };
+    break;
+}
 </string>
           </argument>
         </arguments>

@@ -99,9 +99,19 @@ if(tile_type = 0)
     //fix this if else    
     if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == false)
     {
-        //if(GameController.selected_space = 0)
+        if(instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != 0)
+        {
+            with(GameController.selected_space.selected_index)
+            {
+                instance_destroy();
+            }
+            selected_index = 0;
+            GameController.selected_space = 0;
+            is_selected = false;            
+        }
         GameController.indexX = indexX;
         GameController.indexY = indexY;
+
         with(GameController)
         {
             GameController.selected_space = GameController.board[indexX, indexY];
@@ -122,10 +132,6 @@ if(tile_type = 0)
         GameController.selected_space = 0;
         is_selected = false;
     }
-    //else if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; GameController.selected_space)
-   // {
-    //    is_selected = false;
-   // }
 }
 if(is_hovered == true &amp;&amp; hovered_index == 0)
 {
@@ -149,6 +155,16 @@ if(is_hovered == false)
     }
     hovered_index = 0;
     GameController.hovered_space = 0;
+}
+
+if(is_selected &amp;&amp; instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != id)
+{
+    with(selected_index)
+    {
+        instance_destroy();
+    }
+    selected_index = 0;
+    is_selected = false;   
 }
 </string>
           </argument>
