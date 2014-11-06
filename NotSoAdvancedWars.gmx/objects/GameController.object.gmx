@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-//Game Control Variables
+            <string>//Game Control Variables
 turn_count = 0;
 player_count = 2;
 player_turn = turn_count % player_count;
@@ -48,6 +47,9 @@ hovered_space = 0;
 selected_space = 0;
 hovered_index = 0;
 selected_index = 0;
+
+//Unit selection stuff
+selected_unit = 0;
 
 total_spaces = 0;
 
@@ -96,6 +98,30 @@ indexX = 0;
           <argument>
             <kind>1</kind>
             <string>global.controller = self.instance_id;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Unit Movement Code
+if(selected_unit != 0)
+{
+}
 </string>
           </argument>
         </arguments>

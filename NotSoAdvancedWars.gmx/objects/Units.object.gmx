@@ -32,6 +32,18 @@ ability = 0;
 unit_type = 0;
 
 is_selected = 0;
+
+
+owned_by = 0;
+
+//creation flags
+unit_initialized = false;
+
+//gameturn stats
+has_moved = false;
+
+image_xscale = global.scaleXY/25;
+image_yscale = global.scaleXY/25;
 </string>
           </argument>
         </arguments>
@@ -96,39 +108,46 @@ Medium Armor
 Heavy Weapons
 Medium Range
 */
+unit_type = floor(random(3));
 
-//tile initialization
-
-switch(unit_type)
+if(unit_initialized == false)
 {
-    case 0: //Capital
+    switch(unit_type)
     {
-        movement = 1;
-        dmg_type = 0;
-        arm_type = 0;
-    };
-    break;
-    case 1: //Bomber
-    {
-        movement = 2;
-        dmg_type = 0;
-        arm_type = 1;
-    };
-    break;
-    case 2: //Fighter
-    {
-        movement = 3;
-        dmg_type = 1;
-        arm_type = 2;
-    };
-    break;
-    case 3: //Interceptor
-    {
-        movement = 4;
-        dmg_type = 2;
-        arm_type = 2;
-    };
-    break;
+        case 0: //Capital
+        {
+            movement = 1;
+            dmg_type = 0;
+            arm_type = 0;
+            ability = 1;
+            sprite_index = Ship_Capitol_Red;
+        };
+        break;
+        case 1: //Bomber
+        {
+            movement = 2;
+            dmg_type = 0;
+            arm_type = 1;
+            sprite_index = Ship_Bomber_Red;
+        };
+        break;
+        case 2: //Fighter
+        {
+            movement = 3;
+            dmg_type = 1;
+            arm_type = 2;
+            sprite_index = Ship_Fighter_Red;
+        };
+        break;
+        case 3: //Interceptor
+        {
+            movement = 4;
+            dmg_type = 2;
+            arm_type = 2;
+        };
+        break;
+    }
+    unit_initialized = true;
 }
 </string>
           </argument>

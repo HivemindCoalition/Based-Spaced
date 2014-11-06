@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>terrain = 0;
-occupied_by = 0;
+occupied_by = 0; // keeps id of occupying unit
 controlled_by = 0;
 //indexX = 0;
 //indexY = 0;
@@ -96,10 +96,10 @@ if(tile_type = 0)
         is_hovered = false;
     }
     
-    //fix this if else    
+    //selection code
     if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == false)
     {
-        if(instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != 0)
+        if(instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != 0)//previously selected space removal
         {
             with(GameController.selected_space.selected_index)
             {
@@ -109,18 +109,31 @@ if(tile_type = 0)
             GameController.selected_space = 0;
             is_selected = false;            
         }
+        
+        //store selected space ID
         GameController.indexX = indexX;
         GameController.indexY = indexY;
-
         with(GameController)
         {
             GameController.selected_space = GameController.board[indexX, indexY];
         }
+        
+        //if space is occupied by a unit
+        if(occupied_by != 0)
+        {
+            with(GameController)
+            {
+                selected_unit = board[indexX, indexY].occupied_by;
+            }
+        }
+        
+        //create overlay space
         selected_index = instance_create(x,y,Spaces);
         selected_index.depth = -500; 
         selected_index.sprite_index = Tile_Selected;
         selected_index.tile_type = 1;
         is_selected = true;
+        
     }
     else if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == true)
     {
@@ -165,6 +178,35 @@ if(is_selected &amp;&amp; instance_exists(GameController.selected_space) &amp;&a
     }
     selected_index = 0;
     is_selected = false;   
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Unit Interation Code
+if(position_meeting(x,y,Units)==true)
+{
+    occupied_by = instance_place(x,y,Units);
+}
+else
+{
+    occupied_by = 0;
 }
 </string>
           </argument>

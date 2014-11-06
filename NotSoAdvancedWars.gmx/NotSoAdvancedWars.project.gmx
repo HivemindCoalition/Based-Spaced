@@ -14,6 +14,9 @@
     <sprite>sprites\Tile_Planet_Green</sprite>
     <sprite>sprites\Tile_Empty</sprite>
     <sprite>sprites\Overlay_Basic</sprite>
+    <sprite>sprites\Ship_Bomber_Red</sprite>
+    <sprite>sprites\Ship_Capitol_Red</sprite>
+    <sprite>sprites\Ship_Fighter_Red</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\Background_Space</background>
