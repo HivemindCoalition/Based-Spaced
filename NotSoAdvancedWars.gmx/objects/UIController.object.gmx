@@ -36,41 +36,57 @@ ui_Unit_Info_Y = 300;
 if(instance_exists(GameController.hovered_space))
 {
     draw_text(625,ui_Tile_Info_Y+20,"Ter_hov_ID: " + string(GameController.hovered_space));
+    draw_text(625,ui_Tile_Info_Y+40,"X hover: " + string(GameController.hovered_space.indexX));
+    draw_text(625,ui_Tile_Info_Y+60,"Y hover: " + string(GameController.hovered_space.indexY));
 }
 else
 {
     draw_text(625,ui_Tile_Info_Y+20,"Ter_hov_ID: -");
+    draw_text(625,ui_Tile_Info_Y+40,"X hover: -");
+    draw_text(625,ui_Tile_Info_Y+60,"Y hover: -");
 }
 //selected space information
 if(instance_exists(GameController.selected_space))
 {
-    draw_text(625,ui_Tile_Info_Y+40,"Ter_sel_ID: " + string(GameController.selected_space));
-    draw_text(625,ui_Tile_Info_Y+60,"Tile_Type: " + string(GameController.selected_space.tile_type));
-    draw_text(625,ui_Tile_Info_Y+80,"occupied_by: " + string(GameController.selected_space.occupied_by));
-    draw_text(625,ui_Tile_Info_Y+100,"X select: " + string(GameController.selected_space.indexX));
-    draw_text(625,ui_Tile_Info_Y+120,"Y select: " + string(GameController.selected_space.indexY));
+    draw_text(625,ui_Tile_Info_Y+80,"Ter_sel_ID: " + string(GameController.selected_space));
+    draw_text(625,ui_Tile_Info_Y+100,"Tile_Type: " + string(GameController.selected_space.tile_type));
+    draw_text(625,ui_Tile_Info_Y+120,"occupied_by: " + string(GameController.selected_space.occupied_by));
+    draw_text(625,ui_Tile_Info_Y+140,"X select: " + string(GameController.selected_space.indexX));
+    draw_text(625,ui_Tile_Info_Y+160,"Y select: " + string(GameController.selected_space.indexY));
 }
 else
 {
     
-    draw_text(625,ui_Tile_Info_Y+40,"Ter_sel_ID: -");
-    draw_text(625,ui_Tile_Info_Y+60,"Tile_Type: -");
-    draw_text(625,ui_Tile_Info_Y+80,"occupied_by: -");
-    draw_text(625,ui_Tile_Info_Y+100,"X select: -");
-    draw_text(625,ui_Tile_Info_Y+120,"Y select: -");
+    draw_text(625,ui_Tile_Info_Y+80,"Ter_sel_ID: -");
+    draw_text(625,ui_Tile_Info_Y+100,"Tile_Type: -");
+    draw_text(625,ui_Tile_Info_Y+120,"occupied_by: -");
+    draw_text(625,ui_Tile_Info_Y+140,"X select: -");
+    draw_text(625,ui_Tile_Info_Y+160,"Y select: -");
 }
 //unit information
-if(instance_exists(GameController.selected_unit))
+if(instance_exists(GameController.hovered_unit))
 {
-    draw_text(625,ui_Unit_Info_Y+20,"Unit_sel_ID: " + string(GameController.selected_unit));
-    draw_text(625,ui_Unit_Info_Y+40,"Unit X select: " + string(GameController.selected_unit.indexX));
-    draw_text(625,ui_Unit_Info_Y+60,"Unit Y select: " + string(GameController.selected_unit.indexY));
+    draw_text(625,ui_Unit_Info_Y+20,"Unit_hov_ID: " + string(GameController.hovered_unit));
+    draw_text(625,ui_Unit_Info_Y+40,"Unit X hover: " + string(GameController.hovered_unit.indexX));
+    draw_text(625,ui_Unit_Info_Y+60,"Unit Y hover: " + string(GameController.hovered_unit.indexY));
 }
 else
 {
-    draw_text(625,ui_Unit_Info_Y+20,"Unit_sel_ID: -");
-    draw_text(625,ui_Unit_Info_Y+40,"Unit X select: -");
-    draw_text(625,ui_Unit_Info_Y+60,"Unit Y select: -");
+    draw_text(625,ui_Unit_Info_Y+20,"Unit_hov_ID: -");
+    draw_text(625,ui_Unit_Info_Y+40,"Unit X hover: -");
+    draw_text(625,ui_Unit_Info_Y+60,"Unit Y hover: -");
+}
+if(instance_exists(GameController.selected_unit))
+{
+    draw_text(625,ui_Unit_Info_Y+80,"Unit_sel_ID: " + string(GameController.selected_unit));
+    draw_text(625,ui_Unit_Info_Y+100,"Unit X select: " + string(GameController.selected_unit.indexX));
+    draw_text(625,ui_Unit_Info_Y+120,"Unit Y select: " + string(GameController.selected_unit.indexY));
+}
+else
+{
+    draw_text(625,ui_Unit_Info_Y+80,"Unit_sel_ID: -");
+    draw_text(625,ui_Unit_Info_Y+100,"Unit X select: -");
+    draw_text(625,ui_Unit_Info_Y+120,"Unit Y select: -");
 }
 //draw_text(625,40,"Ter_sel_ID: " + string(GameController.hovered_space.tile_type));
 /*if(instance_exists(GameController.hovered_space))

@@ -37,6 +37,7 @@ global.scaleXY = 30;
 
 //board init
 board[0,0] = 0;
+is_initialized = 0;
 
 //map creation indexes
 indexX = 0;
@@ -50,25 +51,30 @@ selected_index = 0;
 
 //Unit selection stuff
 selected_unit = 0;
+hovered_unit = 0;
 
 total_spaces = 0;
 
 //initial board creation
-while(indexX &lt; sizeX)
+if(is_initialized == 0)
 {
-    while(indexY &lt; sizeY)
+    while(indexX &lt; sizeX)
     {
-        board[indexX,indexY] = instance_create(indexX*global.scaleXY,indexY*global.scaleXY,Spaces);
-        board[indexX,indexY].indexX = indexX;
-        board[indexX,indexY].indexY = indexY;
-
-        total_spaces++;
-        indexY++;
+        while(indexY &lt; sizeY)
+        {
+            board[indexX,indexY] = instance_create(indexX*global.scaleXY,indexY*global.scaleXY,Spaces);
+            board[indexX,indexY].indexX = indexX;
+            board[indexX,indexY].indexY = indexY;
+    
+            total_spaces++;
+            indexY++;
+        }
+        indexY = 0;
+        indexX++;
     }
-    indexY = 0;
-    indexX++;
-}
 indexX = 0;
+is_initialized = 1;
+}
 </string>
           </argument>
         </arguments>
@@ -91,31 +97,10 @@ indexX = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.controller = self.instance_id;
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Unit Movement &amp;&amp; Combat Code
 
 //movement code
-if(selected_unit != 0 &amp;&amp; selected_unit.owned_by == player_turn &amp;&amp; selected_unit.has_moved == false)//if there is a selected unit, it belongs to the player whos turn it is, and the unit hasn't moved
+if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == false)//if there is a selected unit, it belongs to the player whos turn it is, and the unit hasn't moved
 {
 }
 else if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == true)

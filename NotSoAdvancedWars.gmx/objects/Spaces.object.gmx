@@ -124,10 +124,12 @@ if(tile_type = 0)
         //if space is occupied by a unit
         if(occupied_by != 0)
         {
-            with(GameController)
-            {
-                GameController.selected_unit = GameController.board[indexX, indexY].occupied_by;
-            }
+            GameController.selected_unit = GameController.board[indexX, indexY].occupied_by;
+            GameController.selected_unit.is_selected = true;
+        }
+        else
+        {
+            GameController.selected_unit = 0;
         }
         
         //create overlay space
@@ -151,17 +153,27 @@ if(tile_type = 0)
 }
 if(is_hovered == true &amp;&amp; hovered_index == 0)
 {
+    //setting indexes for use with showing hovering information
     GameController.indexX = indexX;
     GameController.indexY = indexY;
-    with(GameController)
-    {
-        GameController.hovered_space = GameController.board[indexX, indexY];
-    }
+    GameController.hovered_space = GameController.board[indexX, indexY];
     hovered_index = instance_create(x,y,Spaces);
     hovered_index.depth = -500; 
     hovered_index.sprite_index = Tile_Selected;
     hovered_index.tile_type = 1;
-    is_hovered = true;
+    
+    //if space is occupied by a unit
+    if(occupied_by != 0)
+    {
+        GameController.hovered_unit = GameController.board[indexX, indexY].occupied_by;
+        GameController.hovered_unit.indexX = indexX;
+        GameController.hovered_unit.indexY = indexY;
+    }
+    else
+    {
+        GameController.hovered_unit = 0;
+    }
+
 }
 if(is_hovered == false)
 {
@@ -170,7 +182,6 @@ if(is_hovered == false)
         instance_destroy();
     }
     hovered_index = 0;
-    GameController.hovered_space = 0;
 }
 
 if(is_selected &amp;&amp; instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != id)
@@ -202,12 +213,10 @@ if(is_selected &amp;&amp; instance_exists(GameController.selected_space) &amp;&a
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Unit Interation Flagging
-if(position_meeting(x,y,Units)==true)
+            <string>///Unit Interaction Flagging
+if(position_meeting(x,y,Units))
 {
     occupied_by = instance_place(x,y,Units);
-    occupied_by.indexX = indexX;
-    occupied_by.indexY = indexY;
 }
 else
 {
