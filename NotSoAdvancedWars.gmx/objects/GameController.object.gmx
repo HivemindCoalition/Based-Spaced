@@ -61,13 +61,7 @@ while(indexX &lt; sizeX)
         board[indexX,indexY] = instance_create(indexX*global.scaleXY,indexY*global.scaleXY,Spaces);
         board[indexX,indexY].indexX = indexX;
         board[indexX,indexY].indexY = indexY;
-        
-        overlay[indexX,indexY] = instance_create(indexX*global.scaleXY,indexY*global.scaleXY,Spaces);
-        overlay[indexX,indexY].indexX = indexX;
-        overlay[indexX,indexY].indexY = indexY;
-        overlay[indexX,indexY].tile_type = 1;
 
-        board[indexX,indexY].overlay = overlay[indexX,indexY];
         total_spaces++;
         indexY++;
     }
@@ -118,10 +112,37 @@ indexX = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Unit Movement Code
-if(selected_unit != 0)
+            <string>///Unit Movement &amp;&amp; Combat Code
+
+//movement code
+if(selected_unit != 0 &amp;&amp; selected_unit.owned_by == player_turn &amp;&amp; selected_unit.has_moved == false)//if there is a selected unit, it belongs to the player whos turn it is, and the unit hasn't moved
 {
 }
+else if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == true)
+{
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Turn Tracker
+player_turn = turn_count % player_count;
 </string>
           </argument>
         </arguments>

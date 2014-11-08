@@ -17,6 +17,7 @@
     <sprite>sprites\Ship_Bomber_Red</sprite>
     <sprite>sprites\Ship_Capitol_Red</sprite>
     <sprite>sprites\Ship_Fighter_Red</sprite>
+    <sprite>sprites\Tile_Movement_Self</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\Background_Space</background>
@@ -29,12 +30,13 @@
     <object>objects\Spaces</object>
     <object>objects\Units</object>
     <object>objects\MouseCursor</object>
+    <object>objects\PlayerController</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41948.8394086574</constant>
+    <constant name="GM_build_date">41951.7886319444</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>

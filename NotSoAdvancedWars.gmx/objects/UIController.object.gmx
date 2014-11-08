@@ -28,20 +28,49 @@
             <string>//600 is starting x value of ui box
 draw_set_alpha(255);
 draw_sprite(Overlay_Basic,0,600,0);
+//tile information
+ui_Tile_Info_Y = 0;
+ui_Unit_Info_Y = 300;
 
-if(instance_exists(GameController.selected_space))
+//hovered space information
+if(instance_exists(GameController.hovered_space))
 {
-    draw_text(625,20,"Ter_sel_ID: " + string(GameController.selected_space));
-    draw_text(625,40,"Tile_Type: " + string(GameController.selected_space.tile_type));
-    draw_text(625,60,"X select: " + string(GameController.selected_space.indexX));
-    draw_text(625,80,"Y select: " + string(GameController.selected_space.indexY));
+    draw_text(625,ui_Tile_Info_Y+20,"Ter_hov_ID: " + string(GameController.hovered_space));
 }
 else
 {
-    draw_text(625,20,"Ter_sel_ID: -");
-    draw_text(625,40,"Tile_Type: -");
-    draw_text(625,60,"X select: -");
-    draw_text(625,80,"Y select: -");
+    draw_text(625,ui_Tile_Info_Y+20,"Ter_hov_ID: -");
+}
+//selected space information
+if(instance_exists(GameController.selected_space))
+{
+    draw_text(625,ui_Tile_Info_Y+40,"Ter_sel_ID: " + string(GameController.selected_space));
+    draw_text(625,ui_Tile_Info_Y+60,"Tile_Type: " + string(GameController.selected_space.tile_type));
+    draw_text(625,ui_Tile_Info_Y+80,"occupied_by: " + string(GameController.selected_space.occupied_by));
+    draw_text(625,ui_Tile_Info_Y+100,"X select: " + string(GameController.selected_space.indexX));
+    draw_text(625,ui_Tile_Info_Y+120,"Y select: " + string(GameController.selected_space.indexY));
+}
+else
+{
+    
+    draw_text(625,ui_Tile_Info_Y+40,"Ter_sel_ID: -");
+    draw_text(625,ui_Tile_Info_Y+60,"Tile_Type: -");
+    draw_text(625,ui_Tile_Info_Y+80,"occupied_by: -");
+    draw_text(625,ui_Tile_Info_Y+100,"X select: -");
+    draw_text(625,ui_Tile_Info_Y+120,"Y select: -");
+}
+//unit information
+if(instance_exists(GameController.selected_unit))
+{
+    draw_text(625,ui_Unit_Info_Y+20,"Unit_sel_ID: " + string(GameController.selected_unit));
+    draw_text(625,ui_Unit_Info_Y+40,"Unit X select: " + string(GameController.selected_unit.indexX));
+    draw_text(625,ui_Unit_Info_Y+60,"Unit Y select: " + string(GameController.selected_unit.indexY));
+}
+else
+{
+    draw_text(625,ui_Unit_Info_Y+20,"Unit_sel_ID: -");
+    draw_text(625,ui_Unit_Info_Y+40,"Unit X select: -");
+    draw_text(625,ui_Unit_Info_Y+60,"Unit Y select: -");
 }
 //draw_text(625,40,"Ter_sel_ID: " + string(GameController.hovered_space.tile_type));
 /*if(instance_exists(GameController.hovered_space))
