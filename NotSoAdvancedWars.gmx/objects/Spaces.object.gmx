@@ -142,6 +142,16 @@ if(tile_type = 0)
     }
     else if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == true)
     {
+        if(occupied_by != 0)
+        {
+            GameController.selected_unit = GameController.board[indexX, indexY].occupied_by;
+            GameController.selected_unit.is_selected = false;
+        }
+        else
+        {
+            GameController.selected_unit = 0;
+        }
+        
         with(selected_index)
         {
             instance_destroy();

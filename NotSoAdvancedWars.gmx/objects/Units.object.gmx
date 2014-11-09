@@ -40,7 +40,7 @@ owned_by = 0;
 //movement overlay flags and variables
 overlay_initialized = false;
 index_count = 0;
-
+movement_index = 0;
 
 //creation flags
 unit_initialized = false;
@@ -173,7 +173,7 @@ if(unit_initialized == false)
           <argument>
             <kind>1</kind>
             <string>///Display Movement Range
-if(is_selected == true &amp;&amp; overlay_initialized == false)
+if(is_selected &amp;&amp; !overlay_initialized)
 {
     tempX = indexX + movement_range; // Set tempX to max range in X direction
     tempY = indexY + movement_range; // Set tempY to max range in Y direction
@@ -202,6 +202,22 @@ if(is_selected == true &amp;&amp; overlay_initialized == false)
         tempX--;
     }
     overlay_initialized = true;
+}
+
+if(!is_selected &amp;&amp; overlay_initialized) // If unit is not selected anymore, but still has movement overlay initialized, destroy overlay
+{
+    var i;
+    for(i = 0; i &lt; array_length_1d(movement_index); i++)
+    {
+        if (instance_exists(movement_index[i]))
+        {
+            with(movement_index[i]) 
+            {
+                instance_destroy();
+            }
+        }
+    }
+    overlay_initialized = false;
 }
 </string>
           </argument>
