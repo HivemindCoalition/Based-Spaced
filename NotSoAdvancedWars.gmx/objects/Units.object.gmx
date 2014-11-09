@@ -184,7 +184,7 @@ if(is_selected == true &amp;&amp; overlay_initialized == false)
         {
             if(((abs(tempX - indexX) + abs(tempY - indexY)) &lt;= movement_range)) // If that space can be reached in legal amount of spaces - create instance - else do nothing
             {
-                if((tempX != indexX) || (tempY != indexY)) // Don't create instance if the space is the unit's current space
+                if(!((tempX == indexX) &amp;&amp; (tempY == indexY))) // Don't create instance if the space is the unit's current space
                 {
                     movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
                     movement_index[index_count].sprite_index = Tile_Movement_Self;
