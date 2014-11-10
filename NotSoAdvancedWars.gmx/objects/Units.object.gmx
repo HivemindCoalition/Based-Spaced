@@ -175,44 +175,10 @@ if(unit_initialized == false)
             <string>///Display Movement Range
 if(is_selected &amp;&amp; !overlay_initialized)
 {
-<<<<<<< HEAD
-
-    index_count = 0;
-    
-    for(tempX = -1 * movement_range; tempX &lt; movement_range; tempX++)
-    {
-        for(tempY = -1 * movement_range; tempY &lt; movement_range; tempY++)
-        {
-            index_count++;
-            movement_index[index_count] = instance_create((indexX+tempX)*global.scaleXY,(indexX+tempY)*global.scaleXY,Spaces);
-            movement_index[index_count].sprite_index = Tile_Movement_Self;
-            movement_index[index_count].image_xscale = global.scaleXY/25;
-            movement_index[index_count].image_yscale = global.scaleXY/25;
-            movement_index[index_count].tile_type = 1;
-            movement_index[index_count].tile_initialized = true;
-            movement_index[index_count].depth = -500;
-            index_count++;
-            
-            /*movement_index[index_count] = instance_create((indexX+tempX)*global.scaleXY,(indexY+tempY)*global.scaleXY,Spaces);
-            movement_index[index_count].sprite_index = Tile_Movement_Self;
-            movement_index[index_count].image_xscale = global.scaleXY/25;
-            movement_index[index_count].image_yscale = global.scaleXY/25;
-            movement_index[index_count].tile_type = 1;
-            movement_index[index_count].tile_initialized = true;
-            movement_index[index_count].depth = -500;
-            index_count++;*/
-        }
-    }
-    
-
-    /*
-    while(tempX &gt;= 0)
-=======
     tempX = indexX + movement_range; // Set tempX to max range in X direction
     tempY = indexY + movement_range; // Set tempY to max range in Y direction
     
     while(tempX &gt;= (indexX - movement_range)) // While tempX is not max range in opposite X direction
->>>>>>> origin/master
     {
         while(tempY &gt;= (indexY - movement_range)) // While temp Y is not max range in opposite Y direction
         {
@@ -235,7 +201,6 @@ if(is_selected &amp;&amp; !overlay_initialized)
         tempY = indexY + movement_range; // reset Y value for next iteration
         tempX--;
     }
-    */
     overlay_initialized = true;
 }
 
