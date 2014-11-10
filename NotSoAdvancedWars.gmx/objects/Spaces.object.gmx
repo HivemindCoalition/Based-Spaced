@@ -84,7 +84,7 @@ if(tile_type == 0) //initializing terrain tiles
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Mouse Selection and Hovering Code
+            <string> ///Mouse Selection and Hovering Code
 
 //check for mouse hovering and for selected tile
 if(tile_type = 0)
@@ -124,11 +124,16 @@ if(tile_type = 0)
         //if space is occupied by a unit
         if(occupied_by != 0)
         {
+            if(GameController.selected_unit != 0)
+            {
+            GameController.selected_unit.is_selected = false;
+            }
             GameController.selected_unit = GameController.board[indexX, indexY].occupied_by;
             GameController.selected_unit.is_selected = true;
         }
         else
         {
+            GameController.selected_unit.is_selected = false;
             GameController.selected_unit = 0;
         }
         
@@ -142,6 +147,11 @@ if(tile_type = 0)
     }
     else if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == true)
     {
+
+        GameController.selected_unit.is_selected = false;
+        GameController.selected_unit = 0;
+
+        
         with(selected_index)
         {
             instance_destroy();
