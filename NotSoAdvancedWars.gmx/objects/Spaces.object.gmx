@@ -47,21 +47,19 @@ if(tile_type == 0) //initializing terrain tiles
         case 0: //open space
         {
             sprite_index = Tile_Empty;
-            image_xscale = global.scaleXY/25;
-            image_yscale = global.scaleXY/25;
-            tile_initialized = true;
         };
         break;
         case 1: //Planet
         {
-            sprite_index = Tile_Planet_Green;
-            image_xscale = global.scaleXY/25;
-            image_yscale = global.scaleXY/25;
-            tile_initialized = true;
+            sprite_index = Tile_Planet_Green;  
         };
         break;
     }
+    image_xscale = global.scaleXY/25;
+    image_yscale = global.scaleXY/25;
+    tile_initialized = true;
 }
+
 </string>
           </argument>
         </arguments>
@@ -84,7 +82,7 @@ if(tile_type == 0) //initializing terrain tiles
         <arguments>
           <argument>
             <kind>1</kind>
-            <string> ///Mouse Selection and Hovering Code
+            <string>///Mouse Selection and Hovering Code
 
 //check for mouse hovering and for selected tile
 if(tile_type = 0)
@@ -99,18 +97,34 @@ if(tile_type = 0)
     }
     
     //selection code
-    if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == false)
+    if((position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == false) || GameController.unit_moved)
     {
         //previously selected space removal
-        if(instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != 0)
+        if((instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != 0))
         {
+            //movement code
+            if(GameController.selected_space.occupied_by != 0)
+            {
+                GameController.prev_selected = GameController.selected_space;
+                GameController.prev_unit = GameController.selected_unit;
+                //GameController.movement_x = GameController.prev_unit.valid_x;
+                //GameController.movement_y = GameController.prev_unit.valid_y;
+            }
+            else
+            {
+                GameController.prev_selected = 0;
+                GameController.prev_unit = 0;
+                //GameController.movement_x = 0;
+                //GameController.movement_y = 0;
+            }
+            
             with(GameController.selected_space.selected_index)
             {
                 instance_destroy();
             }
             selected_index = 0;
             GameController.selected_space = 0;
-            is_selected = false;            
+            is_selected = false;          
         }
         
         //store selected space ID
@@ -126,7 +140,7 @@ if(tile_type = 0)
         {
             if(GameController.selected_unit != 0)
             {
-            GameController.selected_unit.is_selected = false;
+                GameController.selected_unit.is_selected = false;
             }
             GameController.selected_unit = GameController.board[indexX, indexY].occupied_by;
             GameController.selected_unit.is_selected = true;
@@ -138,19 +152,21 @@ if(tile_type = 0)
         }
         
         //create overlay space
-        selected_index = instance_create(x,y,Spaces);
-        selected_index.depth = -500; 
-        selected_index.sprite_index = Tile_Selected;
-        selected_index.tile_type = 1;
-        is_selected = true;
-        
+        if(!GameController.unit_moved)
+        {
+            selected_index = instance_create(x,y,Spaces);
+            selected_index.depth = -500; 
+            selected_index.sprite_index = Tile_Selected;
+            selected_index.tile_type = 1;
+            is_selected = true;
+        }
+
     }
     else if(position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == true)
     {
 
         GameController.selected_unit.is_selected = false;
         GameController.selected_unit = 0;
-
         
         with(selected_index)
         {
@@ -164,8 +180,8 @@ if(tile_type = 0)
 if(is_hovered == true &amp;&amp; hovered_index == 0)
 {
     //setting indexes for use with showing hovering information
-    GameController.indexX = indexX;
-    GameController.indexY = indexY;
+    //GameController.indexX = indexX;
+    //GameController.indexY = indexY;
     GameController.hovered_space = GameController.board[indexX, indexY];
     hovered_index = instance_create(x,y,Spaces);
     hovered_index.depth = -500; 
@@ -203,6 +219,7 @@ if(is_selected &amp;&amp; instance_exists(GameController.selected_space) &amp;&a
     selected_index = 0;
     is_selected = false;   
 }
+GameController.unit_moved = false; //reseting movement flag
 </string>
           </argument>
         </arguments>

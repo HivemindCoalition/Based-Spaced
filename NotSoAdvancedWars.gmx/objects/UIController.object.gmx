@@ -27,11 +27,12 @@
             <kind>1</kind>
             <string>//600 is starting x value of ui box
 draw_set_alpha(255);
-draw_sprite(Overlay_Basic,0,600,0);
+draw_sprite(Overlay_Basic, 0, 600, 0);
+draw_sprite(Overlay_Bottom, 0, 0, 450);
 //tile information
-ui_Tile_Info_Y = 0;
+ui_Tile_Info_Y = 20;
 ui_Unit_Info_Y = 300;
-
+draw_text(625, ui_Tile_Info_Y, "Player: " + string(GameController.player_turn));
 //hovered space information
 if(instance_exists(GameController.hovered_space))
 {
@@ -88,6 +89,8 @@ else
     draw_text(625,ui_Unit_Info_Y+100,"Unit X select: -");
     draw_text(625,ui_Unit_Info_Y+120,"Unit Y select: -");
 }
+
+draw_text(625,ui_Unit_Info_Y+140,"Turn: " + string(GameController.turn_count));
 //draw_text(625,40,"Ter_sel_ID: " + string(GameController.hovered_space.tile_type));
 /*if(instance_exists(GameController.hovered_space))
 {

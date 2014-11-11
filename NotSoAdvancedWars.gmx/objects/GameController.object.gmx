@@ -51,6 +51,9 @@ selected_index = 0;
 
 //Unit selection stuff
 selected_unit = 0;
+prev_selected = 0; //prev selected space
+prev_unit = 0; //prev selected unit
+unit_moved = false; //flag for unit movement
 hovered_unit = 0;
 
 total_spaces = 0;
@@ -100,12 +103,24 @@ is_initialized = 1;
             <string>///Unit Movement &amp;&amp; Combat Code
 
 //movement code
-if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == false)//if there is a selected unit, it belongs to the player whos turn it is, and the unit hasn't moved
+if(prev_unit != 0 &amp;&amp; prev_unit.has_moved == false &amp;&amp; prev_unit.owned_by == player_turn)//if there is a selected unit, it belongs to the player whos turn it is, and the unit hasn't moved
 {
+    for(i = 0; i &lt; array_length_1d(prev_unit.valid_x); i++)
+    {
+        if(selected_space.indexX == prev_unit.valid_x[i] &amp;&amp;
+           selected_space.indexY == prev_unit.valid_y[i])
+        {
+            prev_unit.x = selected_space.indexX * global.scaleXY;
+            prev_unit.y = selected_space.indexY * global.scaleXY;
+            prev_unit.has_moved = true;
+            prev_unit.is_selected = false;
+            //unit_moved = true;
+            turn_count++;
+        }
+    }
 }
-else if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == true)
-{
-}
+//else{} do nothing
+//if(selected_space.indexX == movement_x[i] &amp;&amp; selected_space.indexY == movement_y[i])
 </string>
           </argument>
         </arguments>
@@ -127,7 +142,7 @@ else if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == true)
           <argument>
             <kind>1</kind>
             <string>///Turn Tracker
-player_turn = turn_count % player_count;
+player_turn = (turn_count % player_count) + 1;
 </string>
           </argument>
         </arguments>
