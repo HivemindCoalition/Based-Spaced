@@ -37,7 +37,7 @@ indexY = 0;
 
 //which player the unit belongs to
 owned_by = 0;
-if(indexY &lt; 10){owned_by = 1;}
+if(indexY &lt; 10){owned_by = 1;}//This is super temporary
 else{owned_by = 2;}
 //movement overlay flags and variables
 overlay_initialized = false;
@@ -208,7 +208,7 @@ if(has_moved == false)
 {
     if(is_selected &amp;&amp; !overlay_initialized)
     {
-        
+        index_count = 0;
         tempX = indexX + movement_range; // Set tempX to max range in X direction
         tempY = indexY + movement_range; // Set tempY to max range in Y direction
         

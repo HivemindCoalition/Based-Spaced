@@ -39,6 +39,8 @@ hovered_index = 0;
 selected_index = 0;
 overlay = 0;
 
+init = false;//debug
+
 //tile initialization
 if(tile_type == 0) //initializing terrain tiles
 {
@@ -244,6 +246,7 @@ GameController.unit_moved = false; //reseting movement flag
 if(position_meeting(x,y,Units))
 {
     occupied_by = instance_place(x,y,Units);
+    if(!init){show_debug_message("Unit at: (" + string(x/30) + "," + string(y/30) + ")");init = true;}
 }
 else
 {

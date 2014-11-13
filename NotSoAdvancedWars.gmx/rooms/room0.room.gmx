@@ -64,7 +64,6 @@
     <instance objName="Units" x="0" y="270" name="inst_DEF58C2C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Units" x="0" y="330" name="inst_2C024493" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Units" x="570" y="30" name="inst_62A3651B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="&lt;undefined&gt;" x="0" y="0" name="inst_8E54F885" locked="0" code="" scaleX="0" scaleY="0" colour="0" rotation="0"/>
     <instance objName="Units" x="570" y="210" name="inst_FE1C3775" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Units" x="570" y="150" name="inst_010A5D48" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
