@@ -37,8 +37,7 @@ indexY = 0;
 
 //which player the unit belongs to
 owned_by = 0;
-if(indexY &lt; 10){owned_by = 1;}//This is super temporary
-else{owned_by = 2;}
+
 //movement overlay flags and variables
 overlay_initialized = false;
 index_count = 0;
@@ -130,9 +129,6 @@ if(unit_initialized == false)
         case 0: //Capital
         {
             movement_range = 1;
-            dmg_type = 0;
-            arm_type = 0;
-            ability = 1;
             if(owned_by == 1)
             {
                 sprite_index = Ship_Capitol_Red;
@@ -146,8 +142,6 @@ if(unit_initialized == false)
         case 1: //Bomber
         {
             movement_range = 2;
-            dmg_type = 0;
-            arm_type = 1;
             if(owned_by == 1)
             {
                 sprite_index = Ship_Bomber_Red;
@@ -161,8 +155,6 @@ if(unit_initialized == false)
         case 2: //Fighter
         {
             movement_range = 3;
-            dmg_type = 1;
-            arm_type = 2;
             if(owned_by == 1)
             {
                 sprite_index = Ship_Fighter_Red;
@@ -176,8 +168,6 @@ if(unit_initialized == false)
         case 3: //Interceptor
         {
             movement_range = 4;
-            dmg_type = 2;
-            arm_type = 2;
         };
         break;
     }
@@ -229,7 +219,7 @@ if(has_moved == false)
                         movement_index[index_count].depth = -500;
                         valid_x[index_count] = tempX;
                         valid_y[index_count] = tempY;
-                        show_debug_message("(" + string(tempX) + "," + string(tempY) + ")");
+                        //show_debug_message("(" + string(tempX) + "," + string(tempY) + ")");
                         index_count++;
                     }
                 }

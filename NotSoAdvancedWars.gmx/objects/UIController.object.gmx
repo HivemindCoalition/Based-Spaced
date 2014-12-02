@@ -91,6 +91,24 @@ else
 }
 
 draw_text(625,ui_Unit_Info_Y+140,"Turn: " + string(GameController.turn_count));
+
+if(instance_exists(GameController.prev_unit))
+{
+    draw_text(625,ui_Unit_Info_Y+160,"Prev_unit: " + string(GameController.prev_unit));
+}
+else
+{
+    draw_text(625,ui_Unit_Info_Y+160,"Prev_unit: -");
+}
+
+if(instance_exists(GameController.enemy_unit))
+{
+    draw_text(625,ui_Unit_Info_Y+180,"enemy_unit: " + string(GameController.enemy_unit));
+}
+else
+{
+    draw_text(625,ui_Unit_Info_Y+180,"enemy_unit: -");
+}
 //draw_text(625,40,"Ter_sel_ID: " + string(GameController.hovered_space.tile_type));
 /*if(instance_exists(GameController.hovered_space))
 {
