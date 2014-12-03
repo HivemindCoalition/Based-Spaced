@@ -98,28 +98,16 @@ if(tile_type = 0)
         is_hovered = false;
     }
     
-    //selection code
-    if((position_meeting(mouse_x,mouse_y,self)==true &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; is_selected == false) || GameController.unit_moved)
+    //selection code, can only select own units that HAVE NOT moved yet - movement does not work!!!
+    if((occupied_by != 0
+    &amp;&amp; occupied_by.owned_by == GameController.player_turn
+    &amp;&amp; position_meeting(mouse_x,mouse_y,self)==true
+    &amp;&amp; mouse_check_button_pressed(mb_left)
+    &amp;&amp; is_selected == false) || GameController.unit_moved)
     {
         //previously selected space removal
         if((instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != 0))
         {
-            //movement code
-            if(GameController.selected_space.occupied_by != 0)
-            {
-                GameController.prev_selected = GameController.selected_space;
-                GameController.prev_unit = GameController.selected_unit;
-                //GameController.movement_x = GameController.prev_unit.valid_x;
-                //GameController.movement_y = GameController.prev_unit.valid_y;
-            }
-            else
-            {
-                GameController.prev_selected = 0;
-                GameController.prev_unit = 0;
-                //GameController.movement_x = 0;
-                //GameController.movement_y = 0;
-            }
-            
             with(GameController.selected_space.selected_index)
             {
                 instance_destroy();
@@ -246,7 +234,7 @@ GameController.unit_moved = false; //reseting movement flag
 if(position_meeting(x,y,Units))
 {
     occupied_by = instance_place(x,y,Units);
-    if(!init){show_debug_message("Unit at: (" + string(x/30) + "," + string(y/30) + ")");init = true;}
+    if(!init){/*show_debug_message("Unit at: (" + string(x/30) + "," + string(y/30) + ")");*/init = true;}
 }
 else
 {

@@ -106,18 +106,20 @@ is_initialized = 1;
             <string>///Unit Movement &amp;&amp; Combat Code
 
 //movement code
-if(prev_unit != 0 &amp;&amp; prev_unit.has_moved == false &amp;&amp; prev_unit.owned_by == player_turn)//if there is a selected unit, it belongs to the player whos turn it is, and the unit hasn't moved
+if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == false &amp;&amp; selected_unit.owned_by == player_turn)//if there is a selected unit, it belongs to the player whos turn it is, and the unit hasn't moved
 {
-    for(i = 0; i &lt; array_length_1d(prev_unit.valid_x); i++)
+    for(i = 0; i &lt; array_length_1d(selected_unit.valid_x); i++)
     {
-        if(selected_space.indexX == prev_unit.valid_x[i] &amp;&amp;
-           selected_space.indexY == prev_unit.valid_y[i])
+        if(mouse_check_button_pressed(mb_left)
+        &amp;&amp; hovered_space.indexX == selected_unit.valid_x[i]
+        &amp;&amp; hovered_space.indexY == selected_unit.valid_y[i])
         {
-            prev_unit.x = selected_space.indexX * global.scaleXY;
-            prev_unit.y = selected_space.indexY * global.scaleXY;
-            if(instance_exists(selected_space.occupied_by)){enemy_unit = selected_space.occupied_by;}
-            //prev_unit.has_moved = true;
-            prev_unit.is_selected = false;
+            selected_unit.x = hovered_space.indexX * global.scaleXY;
+            selected_unit.y = hovered_space.indexY * global.scaleXY;
+            if(instance_exists(hovered_space.occupied_by)){enemy_unit = hovered_space.occupied_by;}
+            //selected_unit.has_moved = true;
+            selected_unit.is_selected = false;
+            with(selected_space.selected_index){instance_destroy();}
             //unit_moved = true;
             turn_count++;
         }
@@ -130,24 +132,24 @@ if(prev_unit != 0 &amp;&amp; prev_unit.has_moved == false &amp;&amp; prev_unit.o
 //else{} do nothing
 //if(selected_space.indexX == movement_x[i] &amp;&amp; selected_space.indexY == movement_y[i])
 //unit combat and destruction code
-if(enemy_unit != 0 &amp;&amp; prev_unit.owned_by != enemy_unit.owned_by)//if unit on selected space and is an enemy
+if(enemy_unit != 0 &amp;&amp; selected_unit.owned_by != enemy_unit.owned_by)//if unit on selected space and is an enemy
 {
     show_debug_message("INSIDE COMBAT CODE");
-    if(prev_unit.unit_type &gt; enemy_unit.unit_type &amp;&amp; prev_unit.unit_type - 1 != enemy_unit_type)
+    if(selected_unit.unit_type &gt; enemy_unit.unit_type &amp;&amp; selected_unit.unit_type - 1 != enemy_unit_type)
     {
         with(enemy_unit){instance_destroy();}//destroy enemy unit
         enemy_unit = 0;
     }
-    else if(prev_unit.unit_type == enemy_unit.unit_type)
+    else if(selected_unit.unit_type == enemy_unit.unit_type)
     {
         with(enemy_unit){instance_destroy();}
-        with(prev_unit){instance_destroy();}//destroy both units
-        prev_unit = 0;
+        with(selected_unit){instance_destroy();}//destroy both units
+        selected_unit = 0;
     }
     else
     {
-        with(prev_unit){instance_destroy();}//destroy your unit
-        prev_unit = 0;
+        with(selected_unit){instance_destroy();}//destroy your unit
+        selected_unit = 0;
     }
 }
 </string>
