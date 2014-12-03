@@ -84,6 +84,38 @@ if(tile_type == 0) //initializing terrain tiles
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Unit Interaction Flagging
+if(position_meeting(x,y,Units))
+{
+    occupied_by = instance_place(x,y,Units);
+    if(!init){/*show_debug_message("Unit at: (" + string(x/30) + "," + string(y/30) + ")");*/init = true;}
+}
+else
+{
+    occupied_by = 0;
+    occupied_by.indexX = 0;
+    occupied_by.indexY = 0;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Mouse Selection and Hovering Code
 
 //check for mouse hovering and for selected tile
@@ -210,38 +242,6 @@ if(is_selected &amp;&amp; instance_exists(GameController.selected_space) &amp;&a
     is_selected = false;   
 }
 GameController.unit_moved = false; //reseting movement flag
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Unit Interaction Flagging
-if(position_meeting(x,y,Units))
-{
-    occupied_by = instance_place(x,y,Units);
-    if(!init){/*show_debug_message("Unit at: (" + string(x/30) + "," + string(y/30) + ")");*/init = true;}
-}
-else
-{
-    occupied_by = 0;
-    occupied_by.indexX = 0;
-    occupied_by.indexY = 0;
-}
 </string>
           </argument>
         </arguments>
