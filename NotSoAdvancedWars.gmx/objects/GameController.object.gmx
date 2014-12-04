@@ -132,6 +132,18 @@ if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == false &amp;&amp; sel
 if(enemy_unit != 0 &amp;&amp; selected_unit != 0 &amp;&amp; selected_unit.owned_by != enemy_unit.owned_by)//if unit on selected space and is an enemy
 {
     show_debug_message("INSIDE COMBAT CODE");
+    var i;
+    for(i = 0; i &lt; array_length_1d(selected_unit.movement_index); i++)
+    {
+        if(instance_exists(selected_unit.movement_index[i]))
+        {
+            with(selected_unit.movement_index[i]) 
+            {
+                instance_destroy();
+            }
+        }
+
+    }
     if(selected_unit.unit_type &lt; enemy_unit.unit_type &amp;&amp; selected_unit.unit_type + 1 != enemy_unit.unit_type)
     {
         with(enemy_unit){instance_destroy();}//destroy enemy unit
