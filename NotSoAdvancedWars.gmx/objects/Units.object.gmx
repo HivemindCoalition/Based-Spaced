@@ -118,8 +118,10 @@ if(unit_initialized == false)
 {
     
     ability = 0;
-    unit_type = 0;
-    unit_type = floor(random(3));
+    unit_type = 2;
+    if(y/30 &gt; 4 &amp;&amp; y/30 &lt; 7){unit_type = 0;}
+    else if(y/30 &gt;= 7 &amp;&amp; y/30 &lt; 10){unit_type = 1;}
+    //unit_type = floor(random(3));
     
     if((x/30) &lt; 10){owned_by = 1;}//&lt;&lt;&lt;&lt;&lt;&lt;&lt;WE NEED TO FIX THIS, THIS IS SHITTY CODING RIGHT HERE&lt;&lt;&lt;&lt;&lt;&lt;
     else{owned_by = 2;}

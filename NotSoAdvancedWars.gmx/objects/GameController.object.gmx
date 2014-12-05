@@ -131,7 +131,6 @@ if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == false &amp;&amp; sel
 //unit combat and destruction code
 if(enemy_unit != 0 &amp;&amp; selected_unit != 0 &amp;&amp; selected_unit.owned_by != enemy_unit.owned_by)//if unit on selected space and is an enemy
 {
-    show_debug_message("INSIDE COMBAT CODE");
     var i;
     for(i = 0; i &lt; array_length_1d(selected_unit.movement_index); i++)
     {
@@ -146,11 +145,13 @@ if(enemy_unit != 0 &amp;&amp; selected_unit != 0 &amp;&amp; selected_unit.owned_
     }
     if(selected_unit.unit_type &lt; enemy_unit.unit_type &amp;&amp; selected_unit.unit_type + 1 != enemy_unit.unit_type)
     {
+        if(enemy_unit.unit_type == 0){show_debug_message("PLAYER " + player_turn + " WINS");}
         with(enemy_unit){instance_destroy();}//destroy enemy unit
         enemy_unit = 0;
     }
     else if(selected_unit.unit_type == enemy_unit.unit_type)
     {
+        if(enemy_unit.unit_type == 0){show_debug_message("BOTH PLAYERS LOSE");}
         with(enemy_unit){instance_destroy();}
         with(selected_unit){instance_destroy();}//destroy both units
         enemy_unit = 0;
@@ -158,6 +159,7 @@ if(enemy_unit != 0 &amp;&amp; selected_unit != 0 &amp;&amp; selected_unit.owned_
     }
     else
     {
+        if(selected_unit.unit_type == 0){show_debug_message("PLAYER " + ((player_turn+1)%2) + " WINS");}
         with(selected_unit){instance_destroy();}//destroy your unit
         selected_unit = 0;
     }
