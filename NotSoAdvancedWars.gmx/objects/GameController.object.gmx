@@ -118,15 +118,17 @@ if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == false &amp;&amp; sel
             selected_unit.y = hovered_space.indexY * global.scaleXY;
             if(instance_exists(hovered_space.occupied_by)){enemy_unit = hovered_space.occupied_by;}
             else{enemy_unit = 0;}
-            //selected_unit.has_moved = true;
+            selected_unit.has_moved = true;
             selected_unit.is_selected = false;
             with(selected_space.selected_index){instance_destroy();}
-            //unit_moved = true;
-            turn_count++;
+            //turn_count++;
         }
     }
 }
-//else{} do nothing
+else if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == true)
+{
+    selected_unit.is_selected = false;
+}
 //if(selected_space.indexX == movement_x[i] &amp;&amp; selected_space.indexY == movement_y[i])
 //unit combat and destruction code
 if(enemy_unit != 0 &amp;&amp; selected_unit != 0 &amp;&amp; selected_unit.owned_by != enemy_unit.owned_by)//if unit on selected space and is an enemy
@@ -143,9 +145,10 @@ if(enemy_unit != 0 &amp;&amp; selected_unit != 0 &amp;&amp; selected_unit.owned_
         }
 
     }
-    if(selected_unit.unit_type &lt; enemy_unit.unit_type &amp;&amp; selected_unit.unit_type + 1 != enemy_unit.unit_type)
+    if((selected_unit.unit_type &lt; enemy_unit.unit_type &amp;&amp; selected_unit.unit_type + 1 != enemy_unit.unit_type)
+    || (selected_unit.unit_type &gt; enemy_unit.unit_type &amp;&amp; selected_unit.unit_type - 1 == enemy_unit.unit_type))
     {
-        if(enemy_unit.unit_type == 0){show_debug_message("PLAYER " + player_turn + " WINS");}
+        if(enemy_unit.unit_type == 0){show_debug_message("PLAYER " + string(player_turn) + " WINS");}
         with(enemy_unit){instance_destroy();}//destroy enemy unit
         enemy_unit = 0;
     }
@@ -159,7 +162,7 @@ if(enemy_unit != 0 &amp;&amp; selected_unit != 0 &amp;&amp; selected_unit.owned_
     }
     else
     {
-        if(selected_unit.unit_type == 0){show_debug_message("PLAYER " + ((player_turn+1)%2) + " WINS");}
+        if(selected_unit.unit_type == 0){show_debug_message("PLAYER " + string(((player_turn+1)%2)) + " WINS");}
         with(selected_unit){instance_destroy();}//destroy your unit
         selected_unit = 0;
     }

@@ -8,6 +8,30 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>end_phase = false;
+end_phase_counter = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
@@ -115,6 +139,30 @@ else
     draw_text(625,120,"X hovered: " + string(GameController.hovered_space.indexX));
     draw_text(625,140,"Y hovered: " + string(GameController.hovered_space.indexY));
 }*/
+
+//end turn button
+draw_sprite(Button_End_Turn,0,625,ui_Unit_Info_Y+200);
+
+//move this stuff to game controller
+if(mouse_check_button_released(mb_left)
+&amp;&amp; point_in_rectangle(mouse_x,mouse_y,625,ui_Unit_Info_Y+200, 725, ui_Unit_Info_Y+250))
+{ 
+    show_debug_message("entered end phase button code");
+    end_phase = true;
+    //end turn code
+}
+if(end_phase &amp;&amp; end_phase_counter &lt; 5)
+{
+    show_debug_message("entered end phase counter code");
+    end_phase_counter++;
+}
+if(end_phase_counter &gt;= 5)
+{
+    show_debug_message("entered end of end phase code");
+    end_phase = false;
+    end_phase_counter = 0;
+    GameController.turn_count++;
+}
 </string>
           </argument>
         </arguments>
