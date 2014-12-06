@@ -25,6 +25,7 @@
     <sprite>sprites\Ship_Bomber_Blue</sprite>
     <sprite>sprites\Ship_Fighter_Blue</sprite>
     <sprite>sprites\Ship_Capitol_Blue</sprite>
+    <sprite>sprites\Button_End_Turn_Press</sprite>
     <sprite>sprites\Button_End_Turn</sprite>
   </sprites>
   <backgrounds name="background">
@@ -43,7 +44,7 @@
     <room>rooms\room0</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41979.7988621759</constant>
+    <constant name="GM_build_date">41979.8812525926</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>

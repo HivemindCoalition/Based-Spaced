@@ -141,23 +141,56 @@ else
 }*/
 
 //end turn button
-draw_sprite(Button_End_Turn,0,625,ui_Unit_Info_Y+200);
-
 //move this stuff to game controller
-if(mouse_check_button_released(mb_left)
+if(mouse_check_button_pressed(mb_left)
+&amp;&amp; !point_in_rectangle(mouse_x,mouse_y,625,ui_Unit_Info_Y+200, 725, ui_Unit_Info_Y+250))
+{
+    draw_sprite(Button_End_Turn,0,625,ui_Unit_Info_Y+200);
+    button_pressed = false;
+    mouse_clear(mb_left);
+}
+else if(mouse_check_button_pressed(mb_left)
+&amp;&amp; point_in_rectangle(mouse_x,mouse_y,625,ui_Unit_Info_Y+200, 725, ui_Unit_Info_Y+250))
+{
+    draw_sprite(Button_End_Turn_Press,0,625,ui_Unit_Info_Y+200);
+    button_pressed = true;
+}
+else if(mouse_check_button(mb_left)
+&amp;&amp; point_in_rectangle(mouse_x,mouse_y,625,ui_Unit_Info_Y+200, 725, ui_Unit_Info_Y+250
+&amp;&amp; button_pressed))
+{
+    draw_sprite(Button_End_Turn_Press,0,625,ui_Unit_Info_Y+200);
+}
+else if(!point_in_rectangle(mouse_x,mouse_y,625,ui_Unit_Info_Y+200, 725, ui_Unit_Info_Y+250))
+{
+    draw_sprite(Button_End_Turn,0,625,ui_Unit_Info_Y+200);
+    button_pressed = false;
+}
+else if(mouse_check_button_released(mb_left)
 &amp;&amp; point_in_rectangle(mouse_x,mouse_y,625,ui_Unit_Info_Y+200, 725, ui_Unit_Info_Y+250))
 { 
     show_debug_message("entered end phase button code");
+    draw_sprite(Button_End_Turn,0,625,ui_Unit_Info_Y+200);
+    button_pressed = false;
     end_phase = true;
     //end turn code
 }
+else if(!mouse_check_button(mb_left) &amp;&amp; point_in_rectangle(mouse_x,mouse_y,625,ui_Unit_Info_Y+200, 725, ui_Unit_Info_Y+250))
+{
+    draw_sprite(Button_End_Turn,0,625,ui_Unit_Info_Y+200);
+    button_pressed = false;
+}
+else
+{
+    draw_sprite(Button_End_Turn_Press,0,625,ui_Unit_Info_Y+200);
+}
 
-if(end_phase &amp;&amp; end_phase_counter &lt; 5)
+if(end_phase &amp;&amp; end_phase_counter &lt; 2)
 {
     show_debug_message("entered end phase counter code");
     end_phase_counter++;
 }
-if(end_phase_counter &gt;= 5)
+if(end_phase_counter &gt;= 2)
 {
     show_debug_message("entered end of end phase code");
     end_phase = false;
