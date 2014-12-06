@@ -151,6 +151,7 @@ if(mouse_check_button_released(mb_left)
     end_phase = true;
     //end turn code
 }
+
 if(end_phase &amp;&amp; end_phase_counter &lt; 5)
 {
     show_debug_message("entered end phase counter code");

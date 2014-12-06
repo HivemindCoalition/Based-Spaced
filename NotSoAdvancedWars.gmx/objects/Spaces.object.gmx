@@ -56,6 +56,15 @@ if(tile_type == 0) //initializing terrain tiles
             sprite_index = Tile_Planet_Green;  
         };
         break;
+        case 2:
+        {
+            sprite_index = Tile_Planet_Red;
+        };
+        break;
+        case 3:
+        {
+            sprite_index = Tile_Planet_Pink;
+        };
     }
     image_xscale = global.scaleXY/25;
     image_yscale = global.scaleXY/25;

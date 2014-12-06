@@ -260,24 +260,24 @@ if(has_moved == false)
         }
         overlay_initialized = true;
     }
-    
-    if(!is_selected &amp;&amp; overlay_initialized) // If unit is not selected anymore, but still has movement overlay initialized, destroy overlay
+}
+
+if(!is_selected &amp;&amp; overlay_initialized) // If unit is not selected anymore, but still has movement overlay initialized, destroy overlay
+{
+    var i;
+    for(i = 0; i &lt; array_length_1d(movement_index); i++)
     {
-        var i;
-        for(i = 0; i &lt; array_length_1d(movement_index); i++)
+        if(instance_exists(movement_index[i]))
         {
-            if(instance_exists(movement_index[i]))
+            with(movement_index[i]) 
             {
-                with(movement_index[i]) 
-                {
-                    instance_destroy();
-                }
+                instance_destroy();
             }
-            //valid_x = 0;
-            //valid_y = 0;
         }
-        overlay_initialized = false;
+        //valid_x = 0;
+        //valid_y = 0;
     }
+    overlay_initialized = false;
 }
 </string>
           </argument>

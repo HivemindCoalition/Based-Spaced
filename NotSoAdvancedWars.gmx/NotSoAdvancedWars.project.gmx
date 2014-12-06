@@ -11,6 +11,8 @@
     <sprite>sprites\Tile_Hovered</sprite>
     <sprite>sprites\Tile_Selected</sprite>
     <sprite>sprites\Tile_Grey</sprite>
+    <sprite>sprites\Tile_Planet_Pink</sprite>
+    <sprite>sprites\Tile_Planet_Red</sprite>
     <sprite>sprites\Tile_Planet_Green</sprite>
     <sprite>sprites\Tile_Empty</sprite>
     <sprite>sprites\Tile_Movement_Self</sprite>
