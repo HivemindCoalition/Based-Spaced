@@ -29,7 +29,6 @@
 movement_type = 0; //possible movement patterns
 dmg_type = 0;
 arm_type = 0;
-ability = 0;
 unit_type = 0;
 
 
@@ -42,6 +41,7 @@ owned_by = 0;
 
 //movement overlay flags and variables
 overlay_initialized = false;
+ability_overlay_reset = false;
 index_count = 0;
 movement_index = 0;
 valid_x = 0; //arrays of valid moves
@@ -52,6 +52,19 @@ unit_initialized = false;
 
 //gameturn stats
 has_moved = false;
+
+//ability variables
+ability_type = 0;
+ability_range = 0;
+ability_index = 0;
+ability_valid_x = 0; //arrays of ability range
+ability_valid_y = 0;
+base_ability_index_x = 0;
+base_ability_index_y = 0;
+
+//ability overlay and effects flags
+is_shielded = false;
+ability_overlay_initialized = false;
 
 image_xscale = global.scaleXY/25;
 image_yscale = global.scaleXY/25;
@@ -93,40 +106,83 @@ ability - indicates if a ship has an ability, and what the ability is
 unit_type - indicates the unit type, which decides the aformentioned parameters
 */
 
-
-
-
-/*Unit_Types
-0 - Capital Ship
-Heavy Armor
-Player can only have 1 Capital Ship
-Capital Ship Can Create Units
-Capital Ship Cannot attack, but can defend
-If Capital Ship is destroyed, that player loses
-1 - Corsair
-Light Armor
-Light Weapons
-Short Range
-2 - Fighter
-Lightly Armor
-Medium Weapons
-Medium Range
-3 - Bomber Frigate
-Medium Armor
-Heavy Weapons
-Medium Range
-*/
 if(unit_initialized == false)
 {
-    
-    ability = 0;
+    ability_type = 0;
     unit_type = 2;
-    if(y/30 &gt; 4 &amp;&amp; y/30 &lt; 7){unit_type = 0;}
-    else if(y/30 &gt;= 7 &amp;&amp; y/30 &lt; 10){unit_type = 1;}
-    //unit_type = floor(random(3));
+    indexX = x/global.scaleXY;
+    indexY = y/global.scaleXY;
     
     if((x/30) &lt; 10){owned_by = 1;}//&lt;&lt;&lt;&lt;&lt;&lt;&lt;WE NEED TO FIX THIS, THIS IS SHITTY CODING RIGHT HERE&lt;&lt;&lt;&lt;&lt;&lt;
     else{owned_by = 2;}
+    
+    if(owned_by == 1)
+    {
+        show_debug_message("entered owned_by == 1");
+        if(y == 1*global.scaleXY || y == 2*global.scaleXY || y == 4*global.scaleXY || y == 5*global.scaleXY)//hardcode interceptors
+        {
+            show_debug_message("entered interceptors");
+            unit_type = 4;
+        }
+        else if(y == 3*global.scaleXY || y == 7*global.scaleXY || y = 13*global.scaleXY)//hardcode fighters
+        {
+            show_debug_message("entered figthers");
+            unit_type = 3;
+        }
+        else if(y == 8*global.scaleXY || y == 12*global.scaleXY)//hardcode frigates
+        {
+            show_debug_message("entered frigates");
+            unit_type = 2
+        }
+        else if(y == 11*global.scaleXY)//hardcode Cruiser
+        {
+            show_debug_message("entered Cruiser");
+            unit_type = 1;
+        }
+        else if(y == 9*global.scaleXY)//hardcode Shield-Gen
+        {
+            show_debug_message("entered Shield-Gen");
+            unit_type = 5;
+        }
+        else//(y == 10)//hardcode Capital Ship
+        {
+            show_debug_message("entered Capital Ship");
+            unit_type = 0;
+        }
+    }
+    if(owned_by == 2)
+    {
+        if(y == 13*global.scaleXY || y == 12*global.scaleXY || y == 10*global.scaleXY || y == 9*global.scaleXY)//hardcode interceptors
+        {
+            show_debug_message("entered interceptors");
+            unit_type = 4;
+        }
+        else if(y == 11*global.scaleXY || y == 7*global.scaleXY || y = 1*global.scaleXY)//hardcode fighters
+        {
+            show_debug_message("entered figthers");
+            unit_type = 3;
+        }
+        else if(y == 6*global.scaleXY || y == 2*global.scaleXY)//hardcode frigates
+        {
+            show_debug_message("entered frigates");
+            unit_type = 2
+        }
+        else if(y == 3*global.scaleXY)//hardcode Cruiser
+        {
+            show_debug_message("entered Cruiser");
+            unit_type = 1;
+        }
+        else if(y == 5*global.scaleXY)//hardcode Shield-Gen
+        {
+            show_debug_message("entered Shield-Gen");
+            unit_type = 5;
+        }
+        else//(y == 10)//hardcode Capital Ship
+        {
+            show_debug_message("entered Capital Ship");
+            unit_type = 0;
+        }
+    }
     
     switch(unit_type)
     {
@@ -200,13 +256,15 @@ if(unit_initialized == false)
         {
             movement_range = 3;//have to make horizontal only
             movement_type = 1;//vertical horizontal
+            ability_type = 1;
+            ability_range = 3;
             if(owned_by == 1)
             {
-                sprite_index = Ship_ShieldGen_Red;
+                sprite_index = Ship_Shieldgen_Red;
             }
             else if(owned_by == 2)
             {
-                sprite_index = Ship_ShieldGen_Blue;
+                sprite_index = Ship_Shieldgen_Blue;
             }
         };
         break;
@@ -261,7 +319,7 @@ if(has_moved == false)
                                         &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != GameController.player_turn)//Create red instance if space is enemy unit, and flag appropriately
                                     {
                                         movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
-                                        movement_index[index_count].sprite_index = Tile_Movement_Enemy;
+                                        movement_index[index_count].sprite_index = Tile_Movement_Red;
                                         movement_index[index_count].image_xscale = global.scaleXY/25;
                                         movement_index[index_count].image_yscale = global.scaleXY/25;
                                         movement_index[index_count].tile_type = 1;
@@ -279,7 +337,7 @@ if(has_moved == false)
                                     else
                                     {
                                         movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
-                                        movement_index[index_count].sprite_index = Tile_Movement_Self;
+                                        movement_index[index_count].sprite_index = Tile_Movement_Green;
                                         movement_index[index_count].image_xscale = global.scaleXY/25;
                                         movement_index[index_count].image_yscale = global.scaleXY/25;
                                         movement_index[index_count].tile_type = 1;
@@ -302,7 +360,7 @@ if(has_moved == false)
                                     &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != GameController.player_turn)//Create red instance if space is enemy unit, and flag appropriately
                                 {
                                     movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
-                                    movement_index[index_count].sprite_index = Tile_Movement_Enemy;
+                                    movement_index[index_count].sprite_index = Tile_Movement_Red;
                                     movement_index[index_count].image_xscale = global.scaleXY/25;
                                     movement_index[index_count].image_yscale = global.scaleXY/25;
                                     movement_index[index_count].tile_type = 1;
@@ -320,7 +378,7 @@ if(has_moved == false)
                                 else
                                 {
                                     movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
-                                    movement_index[index_count].sprite_index = Tile_Movement_Self;
+                                    movement_index[index_count].sprite_index = Tile_Movement_Green;
                                     movement_index[index_count].image_xscale = global.scaleXY/25;
                                     movement_index[index_count].image_yscale = global.scaleXY/25;
                                     movement_index[index_count].tile_type = 1;
@@ -385,6 +443,88 @@ if(!is_selected &amp;&amp; overlay_initialized) // If unit is not selected anymo
 if(UIController.end_phase)
 {
     has_moved = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Ability Code
+
+//ShieldGen
+//display shield range
+if(ability_type == 1 &amp;&amp; unit_initialized)
+{
+    if(!ability_overlay_initialized)
+    {
+        index_count = 0;
+        tempX = indexX + ability_range; // Set tempX to max range in X direction
+        tempY = indexY + ability_range; // Set tempY to max range in Y direction
+        while(tempX &gt;= (indexX - ability_range)) // While tempX is not max range in opposite X direction
+        {
+            while(tempY &gt;= (indexY - ability_range)) // While temp Y is not max range in opposite Y direction
+            {
+                if(((abs(tempX - indexX) + abs(tempY - indexY)) &lt;= ability_range)) // If that space is in the abilities ranges - create instance - else do nothing
+                {
+                    if(tempX &gt;= 0 &amp;&amp; tempX &lt; GameController.sizeX &amp;&amp; tempY &gt;= 0 &amp;&amp; tempY &lt; GameController.sizeY)
+                    {
+                        show_debug_message("creating shield overlay");
+                        ability_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
+                        ability_index[index_count].sprite_index = Tile_Shield_White;
+                        ability_index[index_count].image_xscale = global.scaleXY/25;
+                        ability_index[index_count].image_yscale = global.scaleXY/25;
+                        ability_index[index_count].tile_type = 1;
+                        ability_index[index_count].tile_initialized = true;
+                        ability_index[index_count].depth = -500;
+                        ability_valid_x[index_count] = tempX;
+                        ability_valid_y[index_count] = tempY;
+                        if(tempX == 0 &amp;&amp; tempY == 0)
+                        {
+                            base_ability_index_x = index_count;
+                            base_ability_index_y = index_count;
+                        }
+                        index_count++;
+                    }
+                }tempY--;
+            }tempY = indexY + ability_range; // reset Y value for next iteration
+            tempX--;
+        }
+        ability_overlay_initialized = true;
+    }
+}
+
+if(ability_overlay_reset) // If unit is not selected anymore, but still has movement overlay initialized, destroy overlay
+{
+    var i;
+    for(i = 0; i &lt; array_length_1d(ability_index); i++)
+    {
+        if(instance_exists(ability_index[i]))
+        {
+            with(ability_index[i]) 
+            {
+                instance_destroy();
+            }
+        }
+        //valid_x = 0;
+        //valid_y = 0;
+    }
+    ability_overlay_reset = false;
+    ability_overlay_initialized = false;
 }
 </string>
           </argument>

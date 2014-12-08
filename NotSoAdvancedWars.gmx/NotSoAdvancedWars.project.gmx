@@ -14,10 +14,10 @@
       <sprite>sprites\Tile_Hovered</sprite>
       <sprite>sprites\Tile_Grey</sprite>
       <sprite>sprites\Tile_Light_Grey</sprite>
-      <sprite>sprites\Tile_Movement_Enemy</sprite>
-      <sprite>sprites\Tile_Green</sprite>
-      <sprite>sprites\Tile_Movement_Self</sprite>
-      <sprite>sprites\Tile_White</sprite>
+      <sprite>sprites\Tile_Movement_Red</sprite>
+      <sprite>sprites\Tile_Movement_Green</sprite>
+      <sprite>sprites\Tile_Movement_Blue</sprite>
+      <sprite>sprites\Tile_Shield_White</sprite>
       <sprite>sprites\Tile_Planet_Red</sprite>
       <sprite>sprites\Tile_Planet_Pink</sprite>
       <sprite>sprites\Tile_Planet_Green</sprite>
@@ -33,6 +33,8 @@
       <sprite>sprites\Ship_Capitol_Blue</sprite>
       <sprite>sprites\Ship_Cruiser_Blue</sprite>
       <sprite>sprites\Ship_Inter_Blue</sprite>
+      <sprite>sprites\Ship_Shieldgen_Blue</sprite>
+      <sprite>sprites\Ship_Shieldgen_Red</sprite>
     </sprites>
     <sprites name="UI_Pieces">
       <sprite>sprites\Overlay_Basic</sprite>
@@ -57,7 +59,7 @@
     <room>rooms\room0</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41981.6555811343</constant>
+    <constant name="GM_build_date">41981.8472836343</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>

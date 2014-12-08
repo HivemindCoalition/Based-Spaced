@@ -128,6 +128,9 @@ if(selected_unit != 0 &amp;&amp; selected_unit.has_moved == false &amp;&amp; sel
         {
             selected_unit.x = hovered_space.indexX * global.scaleXY;
             selected_unit.y = hovered_space.indexY * global.scaleXY;
+            selected_unit.indexX = hovered_space.indexX;
+            selected_unit.indexY = hovered_space.indexY
+            selected_unit.ability_overlay_reset = true;
             if(instance_exists(hovered_space.occupied_by)){enemy_unit = hovered_space.occupied_by;}
             else{enemy_unit = 0;}
             selected_unit.has_moved = true;
