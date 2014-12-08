@@ -250,45 +250,89 @@ if(has_moved == false)
                 {
                     if(!((tempX == indexX) &amp;&amp; (tempY == indexY))) // Don't create instance if the space is the unit's current space
                     {
-                       
-                        if(tempX &gt;= 0 &amp;&amp; tempX &lt; GameController.sizeX &amp;&amp; tempY &gt;= 0 &amp;&amp; tempY &lt; GameController.sizeY)
+                        if(movement_type == 1)//if movement type is 1, do not create instance if not along horizontal/vertical planes
                         {
-                            if(GameController.board[abs(tempX),abs(tempY)].occupied_by != 0
-                                &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != 0
-                                &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != GameController.player_turn)//Create red instance if space is enemy unit, and flag appropriately
+                            if(tempX == indexX || tempY == indexY)
                             {
-                                movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
-                                movement_index[index_count].sprite_index = Tile_Movement_Enemy;
-                                movement_index[index_count].image_xscale = global.scaleXY/25;
-                                movement_index[index_count].image_yscale = global.scaleXY/25;
-                                movement_index[index_count].tile_type = 1;
-                                movement_index[index_count].tile_initialized = true;
-                                movement_index[index_count].depth = -500;
-                                valid_x[index_count] = tempX;
-                                valid_y[index_count] = tempY;
-                                //show_debug_message("(" + string(tempX) + "," + string(tempY) + ")");
-                                index_count++;
-                            }
-                            else if(GameController.board[abs(tempX),abs(tempY)].occupied_by != 0
-                                &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != 0
-                                &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by == GameController.player_turn)//do nothing
-                            {}
-                            else
-                            {
-                                movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
-                                movement_index[index_count].sprite_index = Tile_Movement_Self;
-                                movement_index[index_count].image_xscale = global.scaleXY/25;
-                                movement_index[index_count].image_yscale = global.scaleXY/25;
-                                movement_index[index_count].tile_type = 1;
-                                movement_index[index_count].tile_initialized = true;
-                                movement_index[index_count].depth = -500;
-                                valid_x[index_count] = tempX;
-                                valid_y[index_count] = tempY;
-                                //show_debug_message("(" + string(tempX) + "," + string(tempY) + ")");
-                                index_count++;
+                                if(tempX &gt;= 0 &amp;&amp; tempX &lt; GameController.sizeX &amp;&amp; tempY &gt;= 0 &amp;&amp; tempY &lt; GameController.sizeY)
+                                {
+                                    if(GameController.board[abs(tempX),abs(tempY)].occupied_by != 0
+                                        &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != 0
+                                        &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != GameController.player_turn)//Create red instance if space is enemy unit, and flag appropriately
+                                    {
+                                        movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
+                                        movement_index[index_count].sprite_index = Tile_Movement_Enemy;
+                                        movement_index[index_count].image_xscale = global.scaleXY/25;
+                                        movement_index[index_count].image_yscale = global.scaleXY/25;
+                                        movement_index[index_count].tile_type = 1;
+                                        movement_index[index_count].tile_initialized = true;
+                                        movement_index[index_count].depth = -500;
+                                        valid_x[index_count] = tempX;
+                                        valid_y[index_count] = tempY;
+                                        //show_debug_message("(" + string(tempX) + "," + string(tempY) + ")");
+                                        index_count++;
+                                    }
+                                    else if(GameController.board[abs(tempX),abs(tempY)].occupied_by != 0
+                                        &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != 0
+                                        &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by == GameController.player_turn)//do nothing
+                                    {}
+                                    else
+                                    {
+                                        movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
+                                        movement_index[index_count].sprite_index = Tile_Movement_Self;
+                                        movement_index[index_count].image_xscale = global.scaleXY/25;
+                                        movement_index[index_count].image_yscale = global.scaleXY/25;
+                                        movement_index[index_count].tile_type = 1;
+                                        movement_index[index_count].tile_initialized = true;
+                                        movement_index[index_count].depth = -500;
+                                        valid_x[index_count] = tempX;
+                                        valid_y[index_count] = tempY;
+                                        //show_debug_message("(" + string(tempX) + "," + string(tempY) + ")");
+                                        index_count++;
+                                    }
+                                }
                             }
                         }
-
+                        else//do nothing
+                        {
+                            if(tempX &gt;= 0 &amp;&amp; tempX &lt; GameController.sizeX &amp;&amp; tempY &gt;= 0 &amp;&amp; tempY &lt; GameController.sizeY)
+                            {
+                                if(GameController.board[abs(tempX),abs(tempY)].occupied_by != 0
+                                    &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != 0
+                                    &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != GameController.player_turn)//Create red instance if space is enemy unit, and flag appropriately
+                                {
+                                    movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
+                                    movement_index[index_count].sprite_index = Tile_Movement_Enemy;
+                                    movement_index[index_count].image_xscale = global.scaleXY/25;
+                                    movement_index[index_count].image_yscale = global.scaleXY/25;
+                                    movement_index[index_count].tile_type = 1;
+                                    movement_index[index_count].tile_initialized = true;
+                                    movement_index[index_count].depth = -500;
+                                    valid_x[index_count] = tempX;
+                                    valid_y[index_count] = tempY;
+                                    //show_debug_message("(" + string(tempX) + "," + string(tempY) + ")");
+                                    index_count++;
+                                }
+                                else if(GameController.board[abs(tempX),abs(tempY)].occupied_by != 0
+                                    &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by != 0
+                                    &amp;&amp; GameController.board[abs(tempX),abs(tempY)].occupied_by.owned_by == GameController.player_turn)//do nothing
+                                {}
+                                else
+                                {
+                                    movement_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
+                                    movement_index[index_count].sprite_index = Tile_Movement_Self;
+                                    movement_index[index_count].image_xscale = global.scaleXY/25;
+                                    movement_index[index_count].image_yscale = global.scaleXY/25;
+                                    movement_index[index_count].tile_type = 1;
+                                    movement_index[index_count].tile_initialized = true;
+                                    movement_index[index_count].depth = -500;
+                                    valid_x[index_count] = tempX;
+                                    valid_y[index_count] = tempY;
+                                    //show_debug_message("(" + string(tempX) + "," + string(tempY) + ")");
+                                    index_count++;
+                                }
+                            }
+                        }
                     }
                 }
                 tempY--;
