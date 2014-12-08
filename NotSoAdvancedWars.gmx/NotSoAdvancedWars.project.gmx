@@ -8,25 +8,36 @@
   <sprites name="sprites">
     <sprite>sprites\sprite0</sprite>
     <sprite>sprites\sprite1</sprite>
-    <sprite>sprites\Tile_Hovered</sprite>
-    <sprite>sprites\Tile_Selected</sprite>
-    <sprite>sprites\Tile_Grey</sprite>
-    <sprite>sprites\Tile_Planet_Pink</sprite>
-    <sprite>sprites\Tile_Planet_Red</sprite>
-    <sprite>sprites\Tile_Planet_Green</sprite>
-    <sprite>sprites\Tile_Empty</sprite>
-    <sprite>sprites\Tile_Movement_Self</sprite>
-    <sprite>sprites\Overlay_Basic</sprite>
-    <sprite>sprites\Tile_Movement_Enemy</sprite>
-    <sprite>sprites\Overlay_Bottom</sprite>
-    <sprite>sprites\Ship_Bomber_Red</sprite>
-    <sprite>sprites\Ship_Capitol_Red</sprite>
-    <sprite>sprites\Ship_Fighter_Red</sprite>
-    <sprite>sprites\Ship_Bomber_Blue</sprite>
-    <sprite>sprites\Ship_Fighter_Blue</sprite>
-    <sprite>sprites\Ship_Capitol_Blue</sprite>
-    <sprite>sprites\Button_End_Turn_Press</sprite>
-    <sprite>sprites\Button_End_Turn</sprite>
+    <sprite>sprites\sprite25</sprite>
+    <sprites name="Tiles">
+      <sprite>sprites\Tile_Selected</sprite>
+      <sprite>sprites\Tile_Empty</sprite>
+      <sprite>sprites\Tile_Hovered</sprite>
+      <sprite>sprites\Tile_Grey</sprite>
+      <sprite>sprites\Tile_Movement_Enemy</sprite>
+      <sprite>sprites\Tile_Movement_Self</sprite>
+      <sprite>sprites\Tile_Planet_Red</sprite>
+      <sprite>sprites\Tile_Planet_Pink</sprite>
+      <sprite>sprites\Tile_Planet_Green</sprite>
+    </sprites>
+    <sprites name="Ships">
+      <sprite>sprites\Ship_Bomber_Red</sprite>
+      <sprite>sprites\Ship_Capitol_Red</sprite>
+      <sprite>sprites\Ship_Fighter_Red</sprite>
+      <sprite>sprites\Ship_Cruiser_Red</sprite>
+      <sprite>sprites\Ship_Inter_Red</sprite>
+      <sprite>sprites\Ship_Bomber_Blue</sprite>
+      <sprite>sprites\Ship_Fighter_Blue</sprite>
+      <sprite>sprites\Ship_Capitol_Blue</sprite>
+      <sprite>sprites\Ship_Cruiser_Blue</sprite>
+      <sprite>sprites\Ship_Inter_Blue</sprite>
+    </sprites>
+    <sprites name="UI_Pieces">
+      <sprite>sprites\Overlay_Basic</sprite>
+      <sprite>sprites\Overlay_Bottom</sprite>
+      <sprite>sprites\Button_End_Turn_Press</sprite>
+      <sprite>sprites\Button_End_Turn</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\Background_Space</background>
@@ -44,7 +55,7 @@
     <room>rooms\room0</room>
   </rooms>
   <constants number="2">
-    <constant name="GM_build_date">41980.8461097569</constant>
+    <constant name="GM_build_date">41981.6391601273</constant>
     <constant name="GM_version">'1.0.0.0'</constant>
   </constants>
   <help>

@@ -188,11 +188,11 @@ if(unit_initialized == false)
             movement_range = 4;
             if(owned_by == 1)
             {
-                sprite_index = Ship_Interceptor_Red;
+                sprite_index = Ship_Inter_Red;
             }
             else if(owned_by == 2)
             {
-                sprite_index = Ship_Interceptor_Blue;
+                sprite_index = Ship_Inter_Blue;
             }
         };
         break;

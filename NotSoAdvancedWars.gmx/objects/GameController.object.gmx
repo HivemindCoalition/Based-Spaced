@@ -62,14 +62,14 @@ total_spaces = 0;
 enemy_unit = 0;
 
 //setting planet positions on map
-planet1.indexX = 0;
-planet1.indexY = 0;
+planet1_indexX = 0;
+planet1_indexY = 0;
 
-planet2.indexX = 0;
-planet2.indexY = 0;
+planet2_indexX = 0;
+planet2_indexY = 0;
 
-planet3.indexX = 0;
-planet3.indexY = 0;
+planet3_indexX = 0;
+planet3_indexY = 0;
 
 
 
