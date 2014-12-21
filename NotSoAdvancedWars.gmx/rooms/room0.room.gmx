@@ -77,7 +77,6 @@
     <instance objName="Units" x="570" y="300" name="inst_37C39480" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Units" x="570" y="210" name="inst_53D6A40B" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Units" x="570" y="30" name="inst_E6CE75F1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="Units" x="0" y="390" name="inst_54FBED2C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="Units" x="570" y="150" name="inst_58459B85" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>

@@ -161,10 +161,7 @@ if(tile_type = 0)
         //store selected space ID
         GameController.indexX = indexX;
         GameController.indexY = indexY;
-        with(GameController)
-        {
-            GameController.selected_space = GameController.board[indexX, indexY];
-        }
+        GameController.selected_space = GameController.board[indexX, indexY];
         
         //if space is occupied by a unit
         if(occupied_by != 0)
@@ -241,7 +238,8 @@ if(is_hovered == false)
     hovered_index = 0;
 }
 
-if(is_selected &amp;&amp; instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != id)
+if(is_selected &amp;&amp;
+  (instance_exists(GameController.selected_space) &amp;&amp; GameController.selected_space != id))
 {
     with(selected_index)
     {

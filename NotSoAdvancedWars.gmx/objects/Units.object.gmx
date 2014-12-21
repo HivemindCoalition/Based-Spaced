@@ -47,6 +47,8 @@ movement_index = 0;
 valid_x = 0; //arrays of valid moves
 valid_y = 0;
 
+moved_sprite = 0;//greys out moved units
+
 //creation flags
 unit_initialized = false;
 
@@ -401,6 +403,16 @@ if(has_moved == false)
         overlay_initialized = true;
     }
 }
+else
+{
+    if(moved_sprite == 0)
+    {
+        moved_sprite = instance_create(x,y,Spaces);
+        moved_sprite.depth = -500;
+        moved_sprite.sprite_index = Tile_Grey;
+        moved_sprite.tile_type = 1;
+    }
+}
 
 if(!is_selected &amp;&amp; overlay_initialized) // If unit is not selected anymore, but still has movement overlay initialized, destroy overlay
 {
@@ -443,6 +455,14 @@ if(!is_selected &amp;&amp; overlay_initialized) // If unit is not selected anymo
 if(UIController.end_phase)
 {
     has_moved = false;
+    if(instance_exists(moved_sprite))
+    {
+        with(moved_sprite)
+        {
+            instance_destroy();
+        }
+    }
+    moved_sprite = 0;
 }
 </string>
           </argument>
@@ -483,22 +503,25 @@ if(ability_type == 1 &amp;&amp; unit_initialized)
                 {
                     if(tempX &gt;= 0 &amp;&amp; tempX &lt; GameController.sizeX &amp;&amp; tempY &gt;= 0 &amp;&amp; tempY &lt; GameController.sizeY)
                     {
-                        show_debug_message("creating shield overlay");
-                        ability_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
-                        ability_index[index_count].sprite_index = Tile_Shield_White;
-                        ability_index[index_count].image_xscale = global.scaleXY/25;
-                        ability_index[index_count].image_yscale = global.scaleXY/25;
-                        ability_index[index_count].tile_type = 1;
-                        ability_index[index_count].tile_initialized = true;
-                        ability_index[index_count].depth = -500;
-                        ability_valid_x[index_count] = tempX;
-                        ability_valid_y[index_count] = tempY;
-                        if(tempX == 0 &amp;&amp; tempY == 0)
+                        //show_debug_message("creating shield overlay");
+                        if(tempX != indexX || tempY != indexY) // doesn't display on itself
                         {
-                            base_ability_index_x = index_count;
-                            base_ability_index_y = index_count;
+                            ability_index[index_count] = instance_create(tempX*global.scaleXY,tempY*global.scaleXY,Spaces);
+                            ability_index[index_count].sprite_index = Tile_Shield_White;
+                            ability_index[index_count].image_xscale = global.scaleXY/25;
+                            ability_index[index_count].image_yscale = global.scaleXY/25;
+                            ability_index[index_count].tile_type = 1;
+                            ability_index[index_count].tile_initialized = true;
+                            ability_index[index_count].depth = -500;
+                            ability_valid_x[index_count] = tempX;
+                            ability_valid_y[index_count] = tempY;
+                            if(tempX == 0 &amp;&amp; tempY == 0)
+                            {
+                                base_ability_index_x = index_count;
+                                base_ability_index_y = index_count;
+                            }
+                            index_count++;
                         }
-                        index_count++;
                     }
                 }tempY--;
             }tempY = indexY + ability_range; // reset Y value for next iteration
